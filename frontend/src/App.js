@@ -1,24 +1,28 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+import Container from '@material-ui/core/Container';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './components/Header';
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
-import Footer from './components/Footer';
-import CartScreen from './screens/CartScreen';
+import { ThemeProvider } from '@material-ui/styles';
+import Header from './components/Header/Header';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
+import ProductScreen from './screens/ProductScreen/ProductScreen';
+import Footer from './components/Footer/Footer';
+import CartScreen from './screens/CartScreen/CartScreen';
+import theme from './theme/theme';
 
 const App = () => {
   return (
     <Router>
-      <Header />
-      <main className='py-3'>
-        <Container>
-          <Route path='/' component={HomeScreen} exact />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
-        </Container>
-      </main>
-      <Footer />
+      <ThemeProvider theme={theme}>
+        <Header />
+        <main>
+          <Container maxWidth='lg'>
+            <Route path='/' component={HomeScreen} exact />
+            <Route path='/product/:id' component={ProductScreen} />
+            <Route path='/cart/:id?' component={CartScreen} />
+          </Container>
+        </main>
+        <Footer />
+      </ThemeProvider>
     </Router>
   );
 };
