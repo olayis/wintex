@@ -7,7 +7,7 @@ import HomeScreen from './screens/HomeScreen/HomeScreen';
 import ProductScreen from './screens/ProductScreen/ProductScreen';
 import Footer from './components/Footer/Footer';
 import CartScreen from './screens/CartScreen/CartScreen';
-import theme from './muiTheme';
+import theme from './theme/theme';
 
 const App = () => {
   return (
