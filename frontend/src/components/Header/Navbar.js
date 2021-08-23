@@ -57,8 +57,8 @@ const Navbar = ({
               classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
               title={
                 cartSubtotalCount
-                  ? `${cartSubtotalCount} items at ₦ ${cartSubtotalPrice}`
-                  : 'Cart is empty'
+                  ? `${cartSubtotalCount} items at ₦${cartSubtotalPrice}`
+                  : 'Your Cart is empty'
               }
             >
               <IconButton

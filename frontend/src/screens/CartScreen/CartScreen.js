@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
-import Message from '../../components/Message/Message';
 import CartItems from './Components/CartItems';
 import CartSubtotal from './Components/CartSubtotal';
+import CartEmpty from './Components/CartEmpty';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,12 +80,7 @@ const CartScreen = ({ match, location, history }) => {
         Shopping Cart
       </Typography>
       {cartItems.length === 0 ? (
-        <Message>
-          Your Cart is empty.{' '}
-          <Link component={RouterLink} to='/'>
-            Continue Shopping
-          </Link>{' '}
-        </Message>
+        <CartEmpty />
       ) : (
         <Grid container spacing={3}>
           <Grid item md={9}>
