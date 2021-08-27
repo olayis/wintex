@@ -6,7 +6,6 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { register } from '../../actions/userActions';
-import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import Message from '../../components/Message/Message';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import RegisterForm from './components/RegisterForm';
@@ -61,14 +60,9 @@ const RegisterScreen = ({ history, location }) => {
   const [passwordsMatch, setPasswordsMatch] = useState(true);
 
   useEffect(() => {
-    dispatch(loadedScreen());
     if (userInfo) {
       history.push(redirect);
     }
-
-    return () => {
-      dispatch(loadScreen());
-    };
   }, [history, userInfo, redirect, dispatch]);
 
   // handlers

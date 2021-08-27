@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { listProductDetails } from '../../actions/productActions';
-import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import Message from '../../components/Message/Message';
 import ProductAction from './components/ProductAction';
 import ProductDetails from './components/ProductDetails';
@@ -23,11 +22,6 @@ const ProductScreen = ({ history, match }) => {
 
   useEffect(() => {
     dispatch(listProductDetails(match.params.id));
-    dispatch(loadedScreen());
-
-    return () => {
-      dispatch(loadScreen());
-    };
   }, [dispatch, match]);
 
   const addToCartHandler = () => {

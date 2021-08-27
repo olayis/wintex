@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
-import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
 import CartItems from './components/CartItems';
 import CartSubtotal from './components/CartSubtotal';
@@ -49,15 +48,9 @@ const CartScreen = ({ match, location, history }) => {
 
   // hooks
   useEffect(() => {
-    dispatch(loadedScreen());
-
     if (productId) {
       dispatch(addToCart(productId, qty));
     }
-
-    return () => {
-      dispatch(loadScreen());
-    };
   }, [dispatch, productId, qty]);
 
   // handlers

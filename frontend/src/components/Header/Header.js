@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
-import LinearLoader from '../Loaders/LinearLoader';
 import HeaderMenu from './HeaderMenu';
 import MobileMenu from './MobileMenu';
 import Navbar from './Navbar';
@@ -144,10 +143,6 @@ const Header = () => {
   const menuId = 'primary-search-account-menu';
   const mobileMenuId = 'primary-search-account-menu-mobile';
 
-  // screen loader
-  const screenLoad = useSelector((state) => state.screenLoad);
-  const { loading: screenLoading } = screenLoad;
-
   // user
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -171,7 +166,6 @@ const Header = () => {
 
   return (
     <div className={classes.grow}>
-      {screenLoading && <LinearLoader variant='indeterminate' />}
       <Navbar
         cartSubtotalCount={cartSubtotalCount}
         classes={classes}

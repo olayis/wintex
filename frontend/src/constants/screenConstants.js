@@ -1,2 +1,0 @@
-export const SCREEN_LOADING = 'SCREEN_LOADING';
-export const SCREEN_LOADED = 'SCREEN_LOADED';

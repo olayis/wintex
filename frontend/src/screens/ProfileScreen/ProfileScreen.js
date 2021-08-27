@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
-import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import UserDetails from './components/UserDetails';
 import UserOrders from './components/UserOrders';
 
@@ -67,7 +66,6 @@ const ProfileScreen = ({ history }) => {
   const [fieldsError, setFieldsError] = useState('');
 
   useEffect(() => {
-    dispatch(loadedScreen());
     if (!userInfo) {
       history.push('/login');
     } else {
@@ -78,10 +76,6 @@ const ProfileScreen = ({ history }) => {
         setEmailFromDB(user.email);
       }
     }
-
-    return () => {
-      dispatch(loadScreen());
-    };
   }, [history, dispatch, user, userInfo]);
 
   console.log('nameFromDB: ', nameFromDB);

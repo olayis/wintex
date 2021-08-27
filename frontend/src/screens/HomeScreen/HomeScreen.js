@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import { listProducts } from '../../actions/productActions';
-import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import { Typography } from '@material-ui/core';
 import Message from '../../components/Message/Message';
 import Product from '../../components/Product/Product';
@@ -15,12 +14,7 @@ const HomeScreen = () => {
   const { loading, error, products } = productList;
 
   useEffect(() => {
-    dispatch(loadedScreen());
     dispatch(listProducts());
-
-    return () => {
-      dispatch(loadScreen());
-    };
   }, [dispatch]);
 
   return (
