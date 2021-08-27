@@ -4,6 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined';
@@ -14,9 +15,11 @@ const MobileMenu = ({
   mobileMenuId,
   isMobileMenuOpen,
   handleMobileMenuClose,
-  cartSubtotalPrice,
   cartSubtotalCount,
   handleProfileMenuOpen,
+  cartTooltipTitle,
+  cartTooltipAriaLabel,
+  userInfo,
 }) => {
   return (
     <Menu
@@ -33,15 +36,10 @@ const MobileMenu = ({
           <Tooltip
             arrow
             classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
-            title={`${cartSubtotalCount} items at ₦ ${cartSubtotalPrice}`}
+            title={cartTooltipTitle}
           >
-            <IconButton
-              aria-label={`show ${Number(cartSubtotalCount)} items at ${Number(
-                cartSubtotalPrice
-              )} Naira`}
-              color='secondary'
-            >
-              <Badge badgeContent={4} color='primary'>
+            <IconButton aria-label={cartTooltipAriaLabel} color='secondary'>
+              <Badge badgeContent={cartSubtotalCount} color='primary'>
                 <ShoppingCartIcon color='primary' />
               </Badge>
             </IconButton>
@@ -58,7 +56,11 @@ const MobileMenu = ({
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        {userInfo ? (
+          <Typography noWrap>{userInfo.name}</Typography>
+        ) : (
+          <p>Account</p>
+        )}
       </MenuItem>
     </Menu>
   );

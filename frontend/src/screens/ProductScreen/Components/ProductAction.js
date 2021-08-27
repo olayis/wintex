@@ -31,7 +31,7 @@ const ProductAction = ({
             <ListItem>
               <Grid container spacing={3}>
                 <Grid item xs>
-                  Price
+                  Price:
                 </Grid>
                 <Grid item xs>
                   <strong>₦{product.price}</strong>
@@ -58,7 +58,7 @@ const ProductAction = ({
               <ListItem>
                 <Grid container spacing={3}>
                   <Grid item xs>
-                    Qty
+                    Quantity:
                   </Grid>
                   <Grid item xs>
                     <FormControl className={classes.formControl}>

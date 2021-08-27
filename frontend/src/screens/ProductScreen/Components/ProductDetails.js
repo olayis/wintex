@@ -26,7 +26,9 @@ const ProductDetails = ({ loading, product }) => {
               color='textSecondary'
               style={{ margin: '3px 0 0 8px' }}
             >
-              ({product.numReviews})
+              {`${product.numReviews} ${
+                product.numReviews === 1 ? 'review' : 'reviews'
+              }`}
             </Typography>
           </ListItem>
           <ListItem divider>

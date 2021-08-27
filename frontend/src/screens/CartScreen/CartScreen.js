@@ -6,9 +6,9 @@ import Typography from '@material-ui/core/Typography';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
-import CartItems from './Components/CartItems';
-import CartSubtotal from './Components/CartSubtotal';
-import CartEmpty from './Components/CartEmpty';
+import CartItems from './components/CartItems';
+import CartSubtotal from './components/CartSubtotal';
+import CartEmpty from './components/CartEmpty';
 
 const useStyles = makeStyles((theme) => ({
   root: {

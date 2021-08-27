@@ -9,9 +9,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { listProductDetails } from '../../actions/productActions';
 import { loadScreen, loadedScreen } from '../../actions/screenActions';
 import Message from '../../components/Message/Message';
-import ProductAction from './Components/ProductAction';
-import ProductDetails from './Components/ProductDetails';
-import ProductImage from './Components/ProductImage';
+import ProductAction from './components/ProductAction';
+import ProductDetails from './components/ProductDetails';
+import ProductImage from './components/ProductImage';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);

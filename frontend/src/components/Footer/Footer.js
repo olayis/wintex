@@ -16,9 +16,9 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <Typography variant='overline' align='center' display='block'>
-        Copyright &copy; Wintex. Developed by &mdash;{' '}
+        Copyright &copy; Wintex. Built by &mdash;{' '}
         <Link
-          href='https://github.com/olayis/'
+          href='https://olusegundev.web.app/'
           target='_blank'
           rel='noreferrer'
         >

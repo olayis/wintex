@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginTop: theme.spacing(3),
     [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(1.2),
       maxWidth: '100%',
     },
   },
@@ -22,16 +23,16 @@ const useStyles = makeStyles((theme) => ({
     height: 223,
     borderRadius: '3px',
     [theme.breakpoints.down('xs')]: {
-      maxWidth: '100%',
-      height: 300,
+      width: '100%',
+      height: 180,
     },
   },
-  action: {
-    display: 'block',
-  },
-  buttonBlock: {
-    display: 'block',
-    width: '100%',
+  rating: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
   productTitle: {
     fontWeight: '400',
@@ -69,7 +70,7 @@ const Product = ({ product }) => {
             <Typography variant='h6' color='textSecondary' component='p'>
               ₦{product.price}
             </Typography>
-            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <div className={classes.rating}>
               <Rating name='product-rating' value={product.rating} readOnly />
               <Typography
                 variant='body2'

@@ -7,18 +7,23 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 290,
     padding: theme.spacing(2),
     marginTop: theme.spacing(3),
-    '&:hover > card__action': {
-      display: 'block',
-    },
     [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(1.2),
       maxWidth: '100%',
     },
   },
   media: {
     height: 223,
+    borderRadius: '3px',
     [theme.breakpoints.down('xs')]: {
-      maxWidth: '100%',
-      height: 300,
+      width: '100%',
+      height: 180,
+    },
+  },
+  rating: {
+    display: 'block',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
     },
   },
 }));
@@ -30,7 +35,12 @@ const ProductSkeleton = () => {
       <Skeleton animation='wave' variant='rect' className={classes.media} />
       <Skeleton animation='wave' width='60%' height='30px' />
       <Skeleton animation='wave' width='30%' height='30px' />
-      <Skeleton animation='wave' width='80%' height='30px' />
+      <Skeleton
+        animation='wave'
+        width='80%'
+        height='30px'
+        className={classes.rating}
+      />
     </Card>
   );
 };

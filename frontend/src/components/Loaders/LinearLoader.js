@@ -1,6 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,19 +11,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ScreenLoader = () => {
+const LinearLoader = ({ variant, progress }) => {
   const classes = useStyles();
 
-  const screenLoad = useSelector((state) => state.screenLoad);
-  const { loading } = screenLoad;
-
   return (
-    loading && (
-      <div className={classes.root}>
+    <div className={classes.root}>
+      {variant === 'indeterminate' ? (
         <LinearProgress />
-      </div>
-    )
+      ) : (
+        <LinearProgress variant={variant} value={progress} />
+      )}
+    </div>
   );
 };
 
-export default ScreenLoader;
+export default LinearLoader;

@@ -34,7 +34,7 @@ const CartItem = ({
           </Link>
         </Grid>
 
-        <Grid item md={2} sm xs>
+        <Grid item md={2} sm={12} xs={12}>
           <Typography variant='subtitle1'>₦{item.price}</Typography>
         </Grid>
 

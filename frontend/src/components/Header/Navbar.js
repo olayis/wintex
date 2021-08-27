@@ -16,11 +16,13 @@ import wintexImage from '../../static/images/wintex_w_white.svg';
 const Navbar = ({
   classes,
   cartSubtotalCount,
-  cartSubtotalPrice,
   handleMobileMenuOpen,
   handleProfileMenuOpen,
   menuId,
   mobileMenuId,
+  cartTooltipTitle,
+  cartTooltipAriaLabel,
+  userInfo,
 }) => {
   return (
     <AppBar position='static'>
@@ -55,16 +57,9 @@ const Navbar = ({
             <Tooltip
               arrow
               classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}
-              title={
-                cartSubtotalCount
-                  ? `${cartSubtotalCount} items at ₦${cartSubtotalPrice}`
-                  : 'Your Cart is empty'
-              }
+              title={cartTooltipTitle}
             >
-              <IconButton
-                aria-label={`show ${cartSubtotalCount} items at ${cartSubtotalPrice} Naira`}
-                color='inherit'
-              >
+              <IconButton aria-label={cartTooltipAriaLabel} color='inherit'>
                 <Badge badgeContent={cartSubtotalCount} color='secondary'>
                   <ShoppingCartIcon color='secondary' />
                 </Badge>
@@ -80,6 +75,19 @@ const Navbar = ({
             color='inherit'
           >
             <AccountCircle />
+            {userInfo ? (
+              <div style={{ maxWidth: '13ch' }}>
+                <Typography
+                  variant='body1'
+                  style={{ marginLeft: '8px' }}
+                  noWrap
+                >
+                  {userInfo.name}
+                </Typography>
+              </div>
+            ) : (
+              ''
+            )}
           </IconButton>
         </div>
         <div className={classes.sectionMobile}>
