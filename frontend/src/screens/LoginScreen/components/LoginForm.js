@@ -45,7 +45,13 @@ const LoginForm = ({ onSubmit, classes, loading }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position='end'>
-                    <EmailIcon color='action' style={{ marginRight: '12px' }} />
+                    <EmailIcon
+                      color='action'
+                      style={{
+                        marginRight: '12px',
+                        marginLeft: '12px',
+                      }}
+                    />
                   </InputAdornment>
                 ),
               }}

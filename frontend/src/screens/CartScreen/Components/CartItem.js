@@ -3,6 +3,7 @@ import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -34,16 +35,27 @@ const CartItem = ({
           </Link>
         </Grid>
 
-        <Grid item md={2} sm={12} xs={12}>
-          <Typography variant='subtitle1'>₦{item.price}</Typography>
+        <Grid item md={2} sm xs={6}>
+          <Typography variant='body2'>
+            <Hidden smUp>Price: </Hidden>₦{item.price}
+          </Typography>
         </Grid>
 
-        <Grid item md={1} sm xs>
+        <Grid item md={1} sm xs={6}>
+          <Hidden smUp>
+            <Typography
+              variant='body2'
+              style={{ display: 'inline-block', margin: '5px 5px 0 0' }}
+            >
+              Qty:
+            </Typography>
+          </Hidden>
           <FormControl className={classes.formControl}>
             <Select
               labelId='quantity-select-label'
               id='quantity-select'
               value={item.qty}
+              style={{ fontSize: '.9rem' }}
               onChange={(e) =>
                 addToCartHandler(item.product, Number(e.target.value))
               }
@@ -58,7 +70,8 @@ const CartItem = ({
         </Grid>
 
         <Grid item md={2} sm xs>
-          <Typography variant='h6'>
+          <Hidden smUp>Subtotal: </Hidden>
+          <Typography variant='body1' display='inline'>
             ₦{(item.price * item.qty).toFixed(2)}
           </Typography>
         </Grid>

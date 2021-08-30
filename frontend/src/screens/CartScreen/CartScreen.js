@@ -63,7 +63,11 @@ const CartScreen = ({ match, location, history }) => {
   };
 
   const checkoutHandler = () => {
-    history.push('/login?redirect=shipping');
+    history.push('/login?redirect=checkout');
+  };
+
+  const continueShoppingHandler = () => {
+    history.push('/');
   };
 
   const classes = useStyles();
@@ -92,6 +96,7 @@ const CartScreen = ({ match, location, history }) => {
               cartSubtotalCount={cartSubtotalCount}
               cartSubtotalPrice={cartSubtotalPrice}
               checkoutHandler={checkoutHandler}
+              continueShoppingHandler={continueShoppingHandler}
             />
           </Grid>
         </Grid>

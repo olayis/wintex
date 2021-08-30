@@ -85,6 +85,7 @@ const RegisterForm = ({ onSubmit, classes, loading, passwordsMatch }) => {
                     <EmailIcon color='action' style={{ marginRight: '12px' }} />
                   </InputAdornment>
                 ),
+                autoComplete: 'new-email',
               }}
             />
           )}
@@ -134,6 +135,7 @@ const RegisterForm = ({ onSubmit, classes, loading, passwordsMatch }) => {
                     </IconButton>
                   </InputAdornment>
                 ),
+                autoComplete: 'new-password',
               }}
             />
           )}

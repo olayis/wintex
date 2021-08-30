@@ -32,7 +32,12 @@ const MobileMenu = ({
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <Link component={RouterLink} to='/cart' underline='none'>
+        <Link
+          component={RouterLink}
+          to='/cart'
+          underline='none'
+          style={{ width: '100%' }}
+        >
           <Tooltip
             arrow
             classes={{ tooltip: classes.tooltip, arrow: classes.arrow }}

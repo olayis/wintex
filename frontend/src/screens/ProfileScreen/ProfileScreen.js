@@ -78,9 +78,6 @@ const ProfileScreen = ({ history }) => {
     }
   }, [history, dispatch, user, userInfo]);
 
-  console.log('nameFromDB: ', nameFromDB);
-  console.log('emailFromDB: ', emailFromDB);
-
   // handlers
   const onSubmit = ({ name, email, password, confirmPassword }) => {
     if (!name && !email && !password) {
@@ -91,12 +88,14 @@ const ProfileScreen = ({ history }) => {
         if (password === confirmPassword) {
           setPasswordsMatch(true);
           dispatch(updateUserProfile({ id: user._id, name, email, password }));
+          history.go(0);
         } else {
           setPasswordsMatch(false);
         }
       } else {
         setFieldsError('');
         dispatch(updateUserProfile({ id: user._id, name, email, password }));
+        history.go(0);
       }
     }
   };

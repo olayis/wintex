@@ -11,13 +11,14 @@ const CartSubtotal = ({
   cartSubtotalCount,
   cartSubtotalPrice,
   checkoutHandler,
+  continueShoppingHandler,
 }) => {
   return (
     <Paper className={classes.paper}>
       <List aria-label='cart subtotal'>
         <ListItem>
           <Typography variant='h2'>
-            Total ({cartSubtotalCount}){' '}
+            Subtotal ({cartSubtotalCount}){' '}
             {cartSubtotalCount === 1 ? 'item' : 'items'}
           </Typography>
         </ListItem>
@@ -40,6 +41,21 @@ const CartSubtotal = ({
             onClick={checkoutHandler}
           >
             Proceed To Checkout
+          </Button>
+        </ListItem>
+
+        <ListItem>
+          <Button
+            variant='outlined'
+            color='primary'
+            size='large'
+            className={classes.buttonBlock}
+            style={{
+              marginTop: '5px',
+            }}
+            onClick={continueShoppingHandler}
+          >
+            Continue Shopping
           </Button>
         </ListItem>
       </List>

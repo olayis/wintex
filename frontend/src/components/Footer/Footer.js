@@ -6,8 +6,11 @@ import Link from '@material-ui/core/Link';
 const useStyles = makeStyles((theme) => ({
   footer: {
     marginTop: theme.spacing(4),
-    padding: theme.spacing(2.5),
+    padding: theme.spacing(3),
     backgroundColor: theme.palette.grey[300],
+  },
+  footerText: {
+    lineHeight: '1.8',
   },
 }));
 
@@ -15,8 +18,13 @@ const Footer = () => {
   const classes = useStyles();
   return (
     <footer className={classes.footer}>
-      <Typography variant='overline' align='center' display='block'>
-        Copyright &copy; Wintex. Built by &mdash;{' '}
+      <Typography
+        variant='overline'
+        align='center'
+        display='block'
+        className={classes.footerText}
+      >
+        Copyright &copy; Wintex. Designed &amp; Developed by &mdash;{' '}
         <Link
           href='https://olusegundev.web.app/'
           target='_blank'

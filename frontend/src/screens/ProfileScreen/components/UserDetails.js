@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
@@ -34,7 +34,7 @@ const UserDetails = ({
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // form hooks
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, setValue } = useForm();
 
   // togglers
   const toggleShowPassword = () => {
@@ -48,6 +48,14 @@ const UserDetails = ({
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  useEffect(() => {
+    // defaultValues
+    if (!loading) {
+      setValue('name', nameFromDB);
+      setValue('email', emailFromDB);
+    }
+  }, [loading, setValue, nameFromDB, emailFromDB]);
 
   return (
     <Paper className={classes.paper}>
@@ -121,6 +129,7 @@ const UserDetails = ({
                 error={!!error}
                 helperText={error ? error.message : null}
                 type='text'
+                disabled={loading}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -154,6 +163,7 @@ const UserDetails = ({
                 error={!!error}
                 helperText={error ? error.message : null}
                 type='email'
+                disabled={loading}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -200,6 +210,7 @@ const UserDetails = ({
                     : null
                 }
                 type={showPassword ? 'text' : 'password'}
+                disabled={loading}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -222,6 +233,7 @@ const UserDetails = ({
             name='confirmPassword'
             control={control}
             defaultValue=''
+            disabled={loading}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 className={classes.textField}
@@ -243,6 +255,7 @@ const UserDetails = ({
                     : null
                 }
                 type={showConfirmPassword ? 'text' : 'password'}
+                disabled={loading}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>

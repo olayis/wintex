@@ -11,6 +11,7 @@ import CartScreen from './screens/CartScreen/CartScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
+import CheckoutScreen from './screens/CheckoutScreen/CheckoutScreen';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Header />
         <main>
           <Container maxWidth='lg'>
+            <Route path='/checkout' component={CheckoutScreen} />
             <Route path='/login' component={LoginScreen} />
             <Route path='/register' component={RegisterScreen} />
             <Route path='/profile' component={ProfileScreen} />
