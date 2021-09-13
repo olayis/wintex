@@ -12,6 +12,9 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import CheckoutScreen from './screens/CheckoutScreen/CheckoutScreen';
+import OrderScreen from './screens/OrderScreen/OrderScreen';
+import UserListScreen from './screens/UserListScreen/UserListScreen';
+// import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
 
 const App = () => {
   return (
@@ -20,13 +23,16 @@ const App = () => {
         <Header />
         <main>
           <Container maxWidth='lg'>
+            <Route path='/cart/:id?' component={CartScreen} />
             <Route path='/checkout' component={CheckoutScreen} />
             <Route path='/login' component={LoginScreen} />
-            <Route path='/register' component={RegisterScreen} />
-            <Route path='/profile' component={ProfileScreen} />
+            <Route path='/orders/:id' component={OrderScreen} />
             <Route path='/product/:id' component={ProductScreen} />
-            <Route path='/cart/:id?' component={CartScreen} />
+            <Route path='/profile' component={ProfileScreen} />
+            <Route path='/register' component={RegisterScreen} />
+            <Route path='/admin/userlist' component={UserListScreen} />
             <Route path='/' component={HomeScreen} exact />
+            {/* <Route component={NotFoundScreen} /> */}
           </Container>
         </main>
         <Footer />

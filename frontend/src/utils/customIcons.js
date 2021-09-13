@@ -40,6 +40,6 @@ export const PaymentMethodIcon = (
 
 export const CreditCardIcon = (
   <Icon>
-    <img alt='Credit Card' src={creditCardSVG} style={iconStyle} />
+    <img alt='Debit/Credit Card' src={creditCardSVG} style={iconStyle} />
   </Icon>
 );

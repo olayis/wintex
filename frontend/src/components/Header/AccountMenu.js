@@ -4,23 +4,23 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button, Typography } from '@material-ui/core';
 
-const HeaderMenu = ({
-  anchorEl,
-  menuId,
-  isMenuOpen,
+const AccountMenu = ({
+  accountAnchorEl,
+  accountMenuId,
   handleMenuClose,
-  userInfo,
+  isAccountMenuOpen,
   logoutHandler,
   menuItemLogoutClass,
+  userInfo,
 }) => {
   return (
     <Menu
-      anchorEl={anchorEl}
+      anchorEl={accountAnchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
+      id={accountMenuId}
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
+      open={isAccountMenuOpen}
       onClose={handleMenuClose}
     >
       {userInfo ? (
@@ -51,4 +51,4 @@ const HeaderMenu = ({
   );
 };
 
-export default HeaderMenu;
+export default AccountMenu;

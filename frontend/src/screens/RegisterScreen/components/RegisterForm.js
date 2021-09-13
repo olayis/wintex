@@ -179,6 +179,7 @@ const RegisterForm = ({ onSubmit, classes, loading, passwordsMatch }) => {
                     </IconButton>
                   </InputAdornment>
                 ),
+                autoComplete: 'new-password',
               }}
             />
           )}

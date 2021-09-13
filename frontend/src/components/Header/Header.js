@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
-import HeaderMenu from './HeaderMenu';
+import AccountMenu from './AccountMenu';
+import AdminMenu from './AdminMenu';
 import MobileMenu from './MobileMenu';
 import Navbar from './Navbar';
 import { logout } from '../../actions/userActions';
@@ -62,13 +63,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('lg')]: {
       width: '50ch',
       '&:focus': {
-        width: '89ch',
+        width: '80ch',
       },
     },
     [theme.breakpoints.down('md')]: {
       width: '35ch',
       '&:focus': {
-        width: '53ch',
+        width: '48ch',
       },
     },
     [theme.breakpoints.down('sm')]: {
@@ -111,15 +112,21 @@ const Header = () => {
   const dispatch = useDispatch();
 
   // states
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [accountAnchorEl, setAccountAnchorEl] = useState(null);
+  const [adminAnchorEl, setAdminAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
+  const isAccountMenuOpen = Boolean(accountAnchorEl);
+  const isAdminMenuOpen = Boolean(adminAnchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
   // handlers
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleAccountMenuOpen = (event) => {
+    setAccountAnchorEl(event.currentTarget);
+  };
+
+  const handleAdminMenuOpen = (event) => {
+    setAdminAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
@@ -127,7 +134,8 @@ const Header = () => {
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setAccountAnchorEl(null);
+    setAdminAnchorEl(null);
     handleMobileMenuClose();
   };
 
@@ -140,8 +148,9 @@ const Header = () => {
   };
 
   // ids
-  const menuId = 'primary-search-account-menu';
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const accountMenuId = 'account-menu';
+  const adminMenuId = 'admin-menu';
+  const mobileMenuId = 'mobile-menu';
 
   // user
   const userLogin = useSelector((state) => state.userLogin);
@@ -167,36 +176,51 @@ const Header = () => {
   return (
     <div className={classes.grow}>
       <Navbar
+        accountMenuId={accountMenuId}
+        adminMenuId={adminMenuId}
         cartSubtotalCount={cartSubtotalCount}
-        classes={classes}
-        handleMobileMenuOpen={handleMobileMenuOpen}
-        handleProfileMenuOpen={handleProfileMenuOpen}
-        menuId={menuId}
-        mobileMenuId={mobileMenuId}
         cartTooltipTitle={cartTooltipTitle}
         cartTooltipAriaLabel={cartTooltipAriaLabel}
+        classes={classes}
+        handleAccountMenuOpen={handleAccountMenuOpen}
+        handleAdminMenuOpen={handleAdminMenuOpen}
+        handleMobileMenuOpen={handleMobileMenuOpen}
+        mobileMenuId={mobileMenuId}
         userInfo={userInfo}
       />
+
       <MobileMenu
+        accountMenuId={accountMenuId}
+        adminMenuId={adminMenuId}
         cartSubtotalCount={cartSubtotalCount}
+        cartTooltipAriaLabel={cartTooltipAriaLabel}
+        cartTooltipTitle={cartTooltipTitle}
         classes={classes}
+        handleAdminMenuOpen={handleAdminMenuOpen}
+        handleAccountMenuOpen={handleAccountMenuOpen}
         handleMobileMenuClose={handleMobileMenuClose}
-        handleProfileMenuOpen={handleProfileMenuOpen}
         isMobileMenuOpen={isMobileMenuOpen}
         mobileMenuId={mobileMenuId}
         mobileMoreAnchorEl={mobileMoreAnchorEl}
-        cartTooltipTitle={cartTooltipTitle}
-        cartTooltipAriaLabel={cartTooltipAriaLabel}
         userInfo={userInfo}
       />
-      <HeaderMenu
-        anchorEl={anchorEl}
-        menuId={menuId}
-        isMenuOpen={isMenuOpen}
+
+      <AccountMenu
+        accountAnchorEl={accountAnchorEl}
+        accountMenuId={accountMenuId}
         handleMenuClose={handleMenuClose}
-        userInfo={userInfo}
+        isAccountMenuOpen={isAccountMenuOpen}
         logoutHandler={logoutHandler}
         menuItemLogoutClass={classes.menuItemLogoutClass}
+        userInfo={userInfo}
+      />
+
+      <AdminMenu
+        adminAnchorEl={adminAnchorEl}
+        adminMenuId={adminMenuId}
+        isAdminMenuOpen={isAdminMenuOpen}
+        handleMenuClose={handleMenuClose}
+        userInfo={userInfo}
       />
     </div>
   );

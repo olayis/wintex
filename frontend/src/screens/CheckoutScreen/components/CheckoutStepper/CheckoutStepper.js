@@ -97,6 +97,7 @@ const CheckoutStepper = ({
             classes={checkoutScreenClasses}
             cart={cart}
             handleNext={handleNext}
+            handleReset={handleReset}
             goToShippingStep={goToShippingStep}
             goToPaymentMethodStep={goToPaymentMethodStep}
             onConfirmOrder={onConfirmOrder}

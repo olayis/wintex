@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
-import CartEmpty from '../../../CartScreen/components/CartEmpty';
 import cartSubtotalHelper from '../../../../helpers/cartSubtotalHelper';
 import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
@@ -16,11 +15,13 @@ import {
   CreditCardIcon,
   PaymentMethodIcon,
 } from '../../../../utils/customIcons';
+import Illustration from '../../../../components/Illustration/Illustration';
+import emptyCartImage from '../../../../static/images/empty_cart.svg';
 
 const ConfirmOrder = ({
   classes,
   cart,
-  handleNext,
+  handleReset,
   goToShippingStep,
   goToPaymentMethodStep,
   onConfirmOrder,
@@ -40,13 +41,13 @@ const ConfirmOrder = ({
       : 1500;
   cart.taxPrice = Number((0.15 * cartSubtotalPrice).toFixed(2));
 
-  const totalPrice =
+  cart.totalPrice =
     Number(cartSubtotalPrice) + cart.shippingPrice + cart.taxPrice;
 
   // handlers
   const handleConfirmOrder = () => {
     onConfirmOrder();
-    handleNext();
+    handleReset();
   };
   return (
     <Paper className={classes.paper} elevation={0}>
@@ -62,7 +63,7 @@ const ConfirmOrder = ({
         >
           Shipping Address
         </Typography>
-        <Typography align='center'>{`${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.country}.`}</Typography>
+        <Typography align='center'>{`${shippingAddress.address}, ${shippingAddress.city} ${shippingAddress.postalCode}, ${shippingAddress.country}.`}</Typography>
 
         <Button variant='outlined' color='primary' onClick={goToShippingStep}>
           Change Shipping Address
@@ -82,7 +83,7 @@ const ConfirmOrder = ({
             ? PayPalIcon
             : paymentMethod === 'Stripe'
             ? StripeIcon
-            : paymentMethod === 'Credit Card'
+            : paymentMethod === 'Debit/Credit Card'
             ? CreditCardIcon
             : paymentMethod === 'Cash On Delivery'
             ? PaymentMethodIcon
@@ -109,7 +110,15 @@ const ConfirmOrder = ({
         </Typography>
 
         {cartItems.length === 0 ? (
-          <CartEmpty />
+          <Illustration
+            actionLink='/'
+            actionText='Start Shopping'
+            altText='Empty Cart'
+            heading='Your cart is empty.'
+            image={emptyCartImage}
+            imgHeight='240'
+            imgWidth='300'
+          />
         ) : (
           <div>
             <Hidden smDown>
@@ -156,7 +165,7 @@ const ConfirmOrder = ({
               cartSubtotalPrice={cartSubtotalPrice}
               shippingPrice={cart.shippingPrice}
               taxPrice={cart.taxPrice}
-              totalPrice={totalPrice}
+              totalPrice={cart.totalPrice}
             />
 
             <Link component={RouterLink} to='/cart' underline='none'>

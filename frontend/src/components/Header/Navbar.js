@@ -8,20 +8,23 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import wintexImage from '../../static/images/wintex_w_white.svg';
 
 const Navbar = ({
-  classes,
+  accountMenuId,
+  adminMenuId,
   cartSubtotalCount,
-  handleMobileMenuOpen,
-  handleProfileMenuOpen,
-  menuId,
-  mobileMenuId,
   cartTooltipTitle,
   cartTooltipAriaLabel,
+  classes,
+  handleAccountMenuOpen,
+  handleAdminMenuOpen,
+  handleMobileMenuOpen,
+  mobileMenuId,
   userInfo,
 }) => {
   return (
@@ -66,12 +69,13 @@ const Navbar = ({
               </IconButton>
             </Tooltip>
           </Link>
+
           <IconButton
             edge='end'
             aria-label='account of current user'
-            aria-controls={menuId}
+            aria-controls={accountMenuId}
             aria-haspopup='true'
-            onClick={handleProfileMenuOpen}
+            onClick={handleAccountMenuOpen}
             color='inherit'
           >
             <AccountCircle />
@@ -89,6 +93,22 @@ const Navbar = ({
               ''
             )}
           </IconButton>
+
+          {userInfo && userInfo.isAdmin && (
+            <IconButton
+              edge='end'
+              aria-label='admin links'
+              aria-controls={adminMenuId}
+              aria-haspopup='true'
+              onClick={handleAdminMenuOpen}
+              color='inherit'
+            >
+              <SupervisedUserCircleIcon />
+              <Typography variant='body1' style={{ marginLeft: '8px' }} noWrap>
+                Admin
+              </Typography>
+            </IconButton>
+          )}
         </div>
         <div className={classes.sectionMobile}>
           <IconButton

@@ -65,6 +65,11 @@ const PaymentMethod = ({
           onChange={handleChange}
         >
           <FormControlLabel
+            value='Debit/Credit Card'
+            control={<Radio color='primary' />}
+            label='Debit/Credit Card'
+          />
+          <FormControlLabel
             value='PayPal'
             control={<Radio color='primary' />}
             label='PayPal'
@@ -75,11 +80,6 @@ const PaymentMethod = ({
             label='Stripe'
           />
           <FormControlLabel
-            value='Credit Card'
-            control={<Radio color='primary' />}
-            label='Credit Card'
-          />
-          <FormControlLabel
             value='Cash On Delivery'
             control={<Radio color='primary' />}
             label='Cash On Delivery'
@@ -88,6 +88,19 @@ const PaymentMethod = ({
       </FormControl>
 
       <Grid container spacing={3} style={{ margin: '15px 0 5px' }}>
+        <Grid item xs>
+          <span
+            className={`${paymentMethodClasses.paymentMethodButton} ${
+              paymentMethod === 'Debit/Credit Card'
+                ? paymentMethodClasses.isSelected
+                : ''
+            }`}
+            onClick={() => setPaymentMethod('Debit/Credit Card')}
+          >
+            {CreditCardIcon}
+          </span>
+        </Grid>
+
         <Grid item xs>
           <span
             className={`${paymentMethodClasses.paymentMethodButton} ${
@@ -107,19 +120,6 @@ const PaymentMethod = ({
             onClick={() => setPaymentMethod('Stripe')}
           >
             {StripeIcon}
-          </span>
-        </Grid>
-
-        <Grid item xs>
-          <span
-            className={`${paymentMethodClasses.paymentMethodButton} ${
-              paymentMethod === 'Credit Card'
-                ? paymentMethodClasses.isSelected
-                : ''
-            }`}
-            onClick={() => setPaymentMethod('Credit Card')}
-          >
-            {CreditCardIcon}
           </span>
         </Grid>
 

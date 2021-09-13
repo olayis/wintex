@@ -2,7 +2,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
-import emptyCartImage from '../../../static/images/empty_cart.svg';
+import offRoadImage from '../../static/images/off_road.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,15 +28,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CartEmpty = () => {
+const NotFoundScreen = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div>
+        <Typography
+          variant={'h1'}
+          color='textSecondary'
+          className={classes.title}
+        >
+          Page Not Found
+        </Typography>
         <img
-          src={emptyCartImage}
-          alt='Empty Cart'
+          src={offRoadImage}
+          alt='No Orders'
           width='300'
           height='240'
           className={classes.image}
@@ -46,14 +53,14 @@ const CartEmpty = () => {
           color='textSecondary'
           className={classes.title}
         >
-          Your Cart is Empty.
+          Ooops! The page you are looking for does not exist
         </Typography>
         <Link component={RouterLink} to='/' className={classes.link}>
-          Start Shopping
+          Let's go back home.
         </Link>
       </div>
     </div>
   );
 };
 
-export default CartEmpty;
+export default NotFoundScreen;

@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { green } from '@material-ui/core/colors';
 import { getUserDetails, updateUserProfile } from '../../actions/userActions';
+import { listMyOrders } from '../../actions/orderActions';
 import UserDetails from './components/UserDetails';
 import UserOrders from './components/UserOrders';
 
@@ -23,6 +25,12 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiInputBase-root': {
       width: '95%',
     },
+    '& .MuiTablePagination-toolbar': {
+      width: '15%',
+    },
+    '& .MuiTablePagination-actions': {
+      display: 'inline-flex',
+    },
   },
   heading: {
     marginBottom: theme.spacing(2),
@@ -42,6 +50,25 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(10),
     height: theme.spacing(10),
   },
+  grid: { width: '98%' },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
+    },
+  },
+  buttonProgress: {
+    color: green[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }));
 
 const ProfileScreen = ({ history }) => {
@@ -59,11 +86,16 @@ const ProfileScreen = ({ history }) => {
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
 
+  // orders
+  const orderListMy = useSelector((state) => state.orderListMy);
+  const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+
   // hooks
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [nameFromDB, setNameFromDB] = useState('');
   const [emailFromDB, setEmailFromDB] = useState('');
   const [fieldsError, setFieldsError] = useState('');
+  const [updatingUserDetails, setUpdatingUserDetails] = useState(false);
 
   useEffect(() => {
     if (!userInfo) {
@@ -71,12 +103,21 @@ const ProfileScreen = ({ history }) => {
     } else {
       if (!user || !user.name) {
         dispatch(getUserDetails('profile'));
+        dispatch(listMyOrders());
       } else {
         setNameFromDB(user.name);
         setEmailFromDB(user.email);
       }
     }
-  }, [history, dispatch, user, userInfo]);
+
+    if (success) {
+      console.log('SUCCESSSS');
+      setUpdatingUserDetails(false);
+      setTimeout(() => {
+        history.go(0);
+      }, 3000);
+    }
+  }, [history, dispatch, user, userInfo, success]);
 
   // handlers
   const onSubmit = ({ name, email, password, confirmPassword }) => {
@@ -88,14 +129,14 @@ const ProfileScreen = ({ history }) => {
         if (password === confirmPassword) {
           setPasswordsMatch(true);
           dispatch(updateUserProfile({ id: user._id, name, email, password }));
-          history.go(0);
+          setUpdatingUserDetails(true);
         } else {
           setPasswordsMatch(false);
         }
       } else {
         setFieldsError('');
         dispatch(updateUserProfile({ id: user._id, name, email, password }));
-        history.go(0);
+        setUpdatingUserDetails(true);
       }
     }
   };
@@ -107,7 +148,7 @@ const ProfileScreen = ({ history }) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item lg={3} md={4} sm={12}>
+        <Grid item lg={3} md={4} sm={12} className={classes.grid}>
           <UserDetails
             classes={classes}
             loading={loading}
@@ -119,10 +160,16 @@ const ProfileScreen = ({ history }) => {
             editUserImage={editUserImage}
             fieldsError={fieldsError}
             success={success}
+            updatingUserDetails={updatingUserDetails}
           />
         </Grid>
-        <Grid item lg={9} md={8} sm={12}>
-          <UserOrders classes={classes} />
+        <Grid item lg={9} md={8} sm={12} className={classes.grid}>
+          <UserOrders
+            classes={classes}
+            orders={orders}
+            loadingOrders={loadingOrders}
+            errorOrders={errorOrders}
+          />
         </Grid>
       </Grid>
     </div>

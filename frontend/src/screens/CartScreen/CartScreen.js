@@ -7,7 +7,8 @@ import { addToCart, removeFromCart } from '../../actions/cartActions';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
 import CartItems from './components/CartItems';
 import CartSubtotal from './components/CartSubtotal';
-import CartEmpty from './components/CartEmpty';
+import Illustration from '../../components/Illustration/Illustration';
+import emptyCartImage from '../../static/images/empty_cart.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,7 +78,15 @@ const CartScreen = ({ match, location, history }) => {
         Shopping Cart
       </Typography>
       {cartItems.length === 0 ? (
-        <CartEmpty />
+        <Illustration
+          actionLink='/'
+          actionText='Start Shopping'
+          altText='Empty Cart'
+          heading='Your cart is empty.'
+          image={emptyCartImage}
+          imgHeight='240'
+          imgWidth='300'
+        />
       ) : (
         <Grid container spacing={3}>
           <Grid item md={9}>

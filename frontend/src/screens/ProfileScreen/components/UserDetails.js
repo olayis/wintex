@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
@@ -28,6 +29,7 @@ const UserDetails = ({
   nameFromDB,
   emailFromDB,
   editUserImage,
+  updatingUserDetails,
 }) => {
   // hooks
   const [showPassword, setShowPassword] = useState(false);
@@ -59,14 +61,14 @@ const UserDetails = ({
 
   return (
     <Paper className={classes.paper}>
+      <Typography variant='h2' className={classes.heading} align='center'>
+        User Profile
+      </Typography>
+
       {loading && <CircularLoader variant='indeterminate' />}
       {error && <Message severity='error'>{error}</Message>}
       {success && <Message severity='success'>Profile Updated</Message>}
       {fieldsError && <Message severity='error'>{fieldsError}</Message>}
-
-      <Typography variant='h2' className={classes.heading} align='center'>
-        User Profile
-      </Typography>
 
       <div className={classes.justifyCenter}>
         <div>
@@ -129,7 +131,7 @@ const UserDetails = ({
                 error={!!error}
                 helperText={error ? error.message : null}
                 type='text'
-                disabled={loading}
+                disabled={loading || updatingUserDetails || !!error}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -163,7 +165,7 @@ const UserDetails = ({
                 error={!!error}
                 helperText={error ? error.message : null}
                 type='email'
-                disabled={loading}
+                disabled={loading || updatingUserDetails || !!error}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -210,7 +212,7 @@ const UserDetails = ({
                     : null
                 }
                 type={showPassword ? 'text' : 'password'}
-                disabled={loading}
+                disabled={loading || updatingUserDetails || !!error}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -233,7 +235,7 @@ const UserDetails = ({
             name='confirmPassword'
             control={control}
             defaultValue=''
-            disabled={loading}
+            disabled={loading || updatingUserDetails || !!error}
             render={({ field: { onChange, value }, fieldState: { error } }) => (
               <TextField
                 className={classes.textField}
@@ -255,7 +257,7 @@ const UserDetails = ({
                     : null
                 }
                 type={showConfirmPassword ? 'text' : 'password'}
-                disabled={loading}
+                disabled={loading || updatingUserDetails || !!error}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position='end'>
@@ -277,14 +279,19 @@ const UserDetails = ({
             )}
           />
         </div>
-        <Button
-          type='submit'
-          variant='contained'
-          color='primary'
-          disabled={loading}
-        >
-          Update Details
-        </Button>
+        <div className={classes.wrapper}>
+          <Button
+            type='submit'
+            variant='contained'
+            color='primary'
+            disabled={loading || updatingUserDetails || !!error}
+          >
+            Update Details
+          </Button>
+          {updatingUserDetails && (
+            <CircularProgress size={24} className={classes.buttonProgress} />
+          )}
+        </div>
       </form>
     </Paper>
   );
