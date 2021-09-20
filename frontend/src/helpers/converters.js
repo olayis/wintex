@@ -16,4 +16,6 @@ const convertEmailToLink = (email) => (
   </Link>
 );
 
-export { convertAdimStatusToIcon, convertEmailToLink };
+const convertItemToLink = (link, text) => <Link href={link}>{text}</Link>;
+
+export { convertAdimStatusToIcon, convertEmailToLink, convertItemToLink };

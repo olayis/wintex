@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
@@ -26,6 +25,10 @@ const ProductScreen = ({ history, match }) => {
 
   const addToCartHandler = () => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
+  };
+
+  const goBack = () => {
+    history.goBack();
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -58,17 +61,12 @@ const ProductScreen = ({ history, match }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Link
-        component={RouterLink}
-        to='/'
-        underline='none'
-        className={classes.backLink}
-      >
+      <Button className={classes.backLink} onClick={goBack}>
         <Typography variant='button'>
           <ArrowBackIcon className={classes.icon} />
           Go Back
         </Typography>
-      </Link>
+      </Button>
 
       {error ? (
         <Message severity='error'>{error}</Message>

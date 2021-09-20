@@ -1,11 +1,11 @@
-import RowMenuCell from '../components/RowMenuCell';
+import RowActionCell from '../components/RowActionCell';
 import {
   convertAdimStatusToIcon,
   convertEmailToLink,
 } from '../../../helpers/converters';
 
 const userColumns = [
-  { field: 'id', headerName: 'ID', width: 230 },
+  { field: 'id', headerName: 'ID', width: 220 },
   { field: 'name', headerName: 'Name', width: 250, editable: true },
   {
     field: 'email',
@@ -17,11 +17,11 @@ const userColumns = [
   {
     field: 'isAdmin',
     headerName: 'Is Admin',
-    description: 'isAdmin values can only be true or false when editing',
     width: 140,
     headerAlign: 'center',
     align: 'center',
     editable: true,
+    type: 'boolean',
     renderCell: (params) => convertAdimStatusToIcon(params.value),
   },
   {
@@ -31,7 +31,7 @@ const userColumns = [
     description: 'User Actions',
     headerAlign: 'center',
     align: 'center',
-    renderCell: RowMenuCell,
+    renderCell: RowActionCell,
     sortable: false,
     filterable: false,
     disableColumnMenu: true,

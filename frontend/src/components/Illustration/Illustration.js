@@ -55,9 +55,11 @@ const Illustration = ({
         >
           {heading}
         </Typography>
-        <Link component={RouterLink} to={actionLink} className={classes.link}>
-          {actionText}
-        </Link>
+        {actionText && (
+          <Link component={RouterLink} to={actionLink} className={classes.link}>
+            {actionText}
+          </Link>
+        )}
       </div>
     </div>
   );

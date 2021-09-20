@@ -1,19 +1,22 @@
-import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from '@mui/x-data-grid';
+import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 import { green } from '@material-ui/core/colors';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import Illustration from '../../components/Illustration/Illustration';
 import Message from '../../components/Message/Message';
-import { listUsers } from '../../actions/userActions';
-import { USER_UPDATE_RESET } from '../../constants/userConstants';
-import noUsersImage from '../../static/images/users.svg';
-import userRows from './data/userRows';
-import userColumns from './data/userColumns';
-import { validateEmail } from '../../helpers/validators';
+import { listProducts } from '../../actions/productActions';
+import noProductsImage from '../../static/images/web_shopping.svg';
+import productRows from './data/productRows';
+import productColumns from './data/productColumns';
+import AddToolbar from './components/AddToolbar';
+import {
+  PRODUCT_CREATE_RESET,
+  PRODUCT_UPDATE_RESET,
+} from '../../constants/productConstants';
 
 const defaultTheme = createTheme();
 
@@ -42,37 +45,40 @@ const useStyles = makeStyles(
   { defaultTheme }
 );
 
-const UserListScreen = ({ history }) => {
+const ProductListScreen = ({ history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [editRowsModel, setEditRowsModel] = useState({});
 
-  // users
-  const userList = useSelector((state) => state.userList);
-  const { loading, error, users = [] } = userList;
+  // products
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products = [] } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const userDelete = useSelector((state) => state.userDelete);
-  const { loading: loadingDelete, success: successDelete } = userDelete;
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading: loadingDelete, success: successDelete } = productDelete;
 
-  const userUpdate = useSelector((state) => state.userUpdate);
+  const productCreate = useSelector((state) => state.productCreate);
+  const { loading: loadingCreate, error: errorCreate } = productCreate;
+
+  const productUpdate = useSelector((state) => state.productUpdate);
   const {
     loading: loadingUpdate,
     success: successUpdate,
     error: errorUpdate,
-  } = userUpdate;
+  } = productUpdate;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listUsers());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+    if (!userInfo.isAdmin) {
       history.push('/login');
     }
 
+    dispatch(listProducts());
+
     if (successUpdate) {
-      dispatch({ type: USER_UPDATE_RESET });
+      dispatch({ type: PRODUCT_UPDATE_RESET });
     }
   }, [dispatch, history, userInfo, successDelete, successUpdate]);
 
@@ -85,24 +91,10 @@ const UserListScreen = ({ history }) => {
     event.defaultMuiPrevented = true;
   };
 
-  const handleEditRowsModelChange = useCallback((newModel) => {
-    const updatedModel = { ...newModel };
-    Object.keys(updatedModel).forEach((id) => {
-      if (updatedModel[id].email) {
-        const isValid = validateEmail(updatedModel[id].email.value);
-        updatedModel[id].email = {
-          ...updatedModel[id].email,
-          error: !isValid,
-        };
-      }
-    });
-    setEditRowsModel(updatedModel);
-  }, []);
-
   return (
     <Paper style={{ padding: '16px', marginTop: '12px' }}>
       <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
-        Users
+        Products
       </Typography>
       {loading ? (
         <>
@@ -111,7 +103,7 @@ const UserListScreen = ({ history }) => {
         </>
       ) : error ? (
         <Message severity='error'>{error}</Message>
-      ) : users.length !== 0 ? (
+      ) : products.length !== 0 ? (
         <>
           <div style={{ marginBottom: '8px' }}>
             <div style={{ marginBottom: '5px' }}>
@@ -123,10 +115,23 @@ const UserListScreen = ({ history }) => {
               )}
               {successDelete && (
                 <Message severity='success'>
-                  User has been deleted successfully
+                  Product has been deleted successfully
                 </Message>
               )}
             </div>
+
+            <div style={{ marginBottom: '5px' }}>
+              {loadingCreate && (
+                <>
+                  <CircularLoader variant='indeterminate' />
+                  <p style={{ textAlign: 'center' }}>
+                    Creating a new product...
+                  </p>
+                </>
+              )}
+              {errorCreate && <Message severity='error'>{errorCreate}</Message>}
+            </div>
+
             <div style={{ marginBottom: '5px' }}>
               {loadingUpdate && (
                 <>
@@ -136,7 +141,7 @@ const UserListScreen = ({ history }) => {
               )}
               {successUpdate && (
                 <Message severity='success'>
-                  User has been updated successfully
+                  Order has been updated successfully
                 </Message>
               )}
               {errorUpdate && <Message severity='error'>{errorUpdate}</Message>}
@@ -147,15 +152,14 @@ const UserListScreen = ({ history }) => {
             <ThemeProvider theme={overrideTheme}>
               <DataGrid
                 className={classes.root}
-                rows={userRows(users)}
-                columns={userColumns}
+                rows={productRows(products)}
+                columns={productColumns}
                 pageSize={20}
                 rowsPerPageOptions={[20]}
                 editMode='row'
                 onRowEditStart={handleRowEditStart}
                 onRowEditStop={handleRowEditStop}
-                editRowsModel={editRowsModel}
-                onEditRowsModelChange={handleEditRowsModelChange}
+                components={{ Toolbar: AddToolbar }}
               />
             </ThemeProvider>
           </div>
@@ -164,15 +168,15 @@ const UserListScreen = ({ history }) => {
         <Illustration
           actionLink='#'
           actionText=''
-          altText='No Users'
-          heading={'No users to display'}
-          image={noUsersImage}
-          imgHeight={273}
-          imgWidth={300}
+          altText='No Products'
+          heading={'No products available'}
+          image={noProductsImage}
+          imgHeight={225}
+          imgWidth={318}
         />
       )}
     </Paper>
   );
 };
 
-export default UserListScreen;
+export default ProductListScreen;

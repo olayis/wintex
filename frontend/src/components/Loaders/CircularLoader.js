@@ -30,4 +30,10 @@ const CircularLoader = ({ variant, thickness, size }) => {
   );
 };
 
+CircularLoader.defaultProps = {
+  variant: 'indeterminate',
+  thickness: 3.6,
+  size: 40,
+};
+
 export default CircularLoader;

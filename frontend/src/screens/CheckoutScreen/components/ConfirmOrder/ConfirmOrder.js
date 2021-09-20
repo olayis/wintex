@@ -16,7 +16,7 @@ import {
   PaymentMethodIcon,
 } from '../../../../utils/customIcons';
 import Illustration from '../../../../components/Illustration/Illustration';
-import emptyCartImage from '../../../../static/images/empty_cart.svg';
+import addToCartImage from '../../../../static/images/add_to_cart.svg';
 
 const ConfirmOrder = ({
   classes,
@@ -112,12 +112,12 @@ const ConfirmOrder = ({
         {cartItems.length === 0 ? (
           <Illustration
             actionLink='/'
-            actionText='Start Shopping'
+            actionText='Add products to cart'
             altText='Empty Cart'
             heading='Your cart is empty.'
-            image={emptyCartImage}
-            imgHeight='240'
-            imgWidth='300'
+            image={addToCartImage}
+            imgHeight='289'
+            imgWidth='385'
           />
         ) : (
           <div>
