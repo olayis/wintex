@@ -5,7 +5,7 @@ const ProductImage = ({ loading, image, alt, classes }) => {
   return (
     <>
       {loading ? (
-        <Skeleton animation='wave' variant='rect' height='500px' />
+        <Skeleton animation='wave' variant='rect' height='400px' />
       ) : (
         <img src={image} alt={alt} className={classes} />
       )}
