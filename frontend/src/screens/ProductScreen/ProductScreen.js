@@ -69,7 +69,9 @@ const ProductScreen = ({ history, match }) => {
       </Button>
 
       {error ? (
-        <Message severity='error'>{error}</Message>
+        <Message severity='error' collapsible>
+          {error}
+        </Message>
       ) : (
         <Grid container spacing={3}>
           <Grid item md={6} sm={12} xs={12}>

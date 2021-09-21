@@ -78,7 +78,11 @@ const RegisterScreen = ({ history, location }) => {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         {loading && <CircularLoader variant='indeterminate' />}
-        {error && <Message severity='error'>{error}</Message>}
+        {error && (
+          <Message severity='error' collapsible>
+            {error}
+          </Message>
+        )}
 
         <Typography variant='h1' className={classes.heading} align='center'>
           Sign Up

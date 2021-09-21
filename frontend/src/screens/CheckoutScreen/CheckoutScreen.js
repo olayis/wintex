@@ -119,7 +119,9 @@ const CheckoutScreen = ({ history }) => {
             {loading ? (
               <CircularLoader variant='indeterminate' />
             ) : error ? (
-              <Message severity='error'>{error}</Message>
+              <Message severity='error' collapsible>
+                {error}
+              </Message>
             ) : (
               ''
             )}

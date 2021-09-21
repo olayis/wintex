@@ -15,6 +15,7 @@ import CheckoutScreen from './screens/CheckoutScreen/CheckoutScreen';
 import OrderScreen from './screens/OrderScreen/OrderScreen';
 import UserListScreen from './screens/UserListScreen/UserListScreen';
 import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
+import OrderListScreen from './screens/OrderListScreen/OrderListScreen';
 // import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
             <Route path='/register' component={RegisterScreen} />
             <Route path='/admin/userlist' component={UserListScreen} />
             <Route path='/admin/productlist' component={ProductListScreen} />
+            <Route path='/admin/orderlist' component={OrderListScreen} />
             <Route path='/' component={HomeScreen} exact />
             {/* <Route component={NotFoundScreen} /> */}
           </Container>

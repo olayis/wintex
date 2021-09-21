@@ -1,6 +1,6 @@
 import RowActionCell from '../components/RowActionCell';
 import {
-  convertAdimStatusToIcon,
+  convertStatusToIcon,
   convertEmailToLink,
 } from '../../../helpers/converters';
 
@@ -22,7 +22,7 @@ const userColumns = [
     align: 'center',
     editable: true,
     type: 'boolean',
-    renderCell: (params) => convertAdimStatusToIcon(params.value),
+    renderCell: (params) => convertStatusToIcon(params.value),
   },
   {
     field: 'actions',

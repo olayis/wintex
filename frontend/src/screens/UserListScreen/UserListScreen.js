@@ -110,7 +110,9 @@ const UserListScreen = ({ history }) => {
           <p style={{ textAlign: 'center' }}>Loading...</p>
         </>
       ) : error ? (
-        <Message severity='error'>{error}</Message>
+        <Message severity='error' collapsible>
+          {error}
+        </Message>
       ) : users.length !== 0 ? (
         <>
           <div style={{ marginBottom: '8px' }}>
@@ -122,7 +124,7 @@ const UserListScreen = ({ history }) => {
                 </>
               )}
               {successDelete && (
-                <Message severity='success'>
+                <Message severity='success' collapsible>
                   User has been deleted successfully
                 </Message>
               )}
@@ -135,11 +137,15 @@ const UserListScreen = ({ history }) => {
                 </>
               )}
               {successUpdate && (
-                <Message severity='success'>
+                <Message severity='success' collapsible>
                   User has been updated successfully
                 </Message>
               )}
-              {errorUpdate && <Message severity='error'>{errorUpdate}</Message>}
+              {errorUpdate && (
+                <Message severity='error' collapsible>
+                  {errorUpdate}
+                </Message>
+              )}
             </div>
           </div>
 

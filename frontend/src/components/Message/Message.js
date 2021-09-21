@@ -14,37 +14,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Message = ({ severity, children }) => {
+const Message = ({ severity, children, collapsible }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
   return (
     <div className={classes.root}>
-      <Collapse in={open}>
-        <Alert
-          severity={severity}
-          action={
-            <IconButton
-              aria-label='close'
-              color='inherit'
-              size='small'
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize='inherit' />
-            </IconButton>
-          }
-        >
-          {children}
-        </Alert>
-      </Collapse>
+      {collapsible ? (
+        <Collapse in={open}>
+          <Alert
+            severity={severity}
+            action={
+              <IconButton
+                aria-label='close'
+                color='inherit'
+                size='small'
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                <CloseIcon fontSize='inherit' />
+              </IconButton>
+            }
+          >
+            {children}
+          </Alert>
+        </Collapse>
+      ) : (
+        <Alert severity={severity}>{children}</Alert>
+      )}
     </div>
   );
 };
 
 Message.defaultProps = {
   severity: 'info',
+  text: '',
+  collapsible: false,
 };
 
 export default Message;

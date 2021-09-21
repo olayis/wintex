@@ -83,7 +83,7 @@ const NewProductDialog = ({
             </>
           )}
           {errorCreate && (
-            <Message severity='error'>
+            <Message severity='error' collapsible>
               <strong>Unable to initialize a new product: </strong>
               {errorCreate}
             </Message>
@@ -96,12 +96,12 @@ const NewProductDialog = ({
               </>
             )}
             {successUpdate && (
-              <Message severity='success'>
+              <Message severity='success' collapsible>
                 Product has been created successfully
               </Message>
             )}
             {errorUpdate && (
-              <Message severity='error'>
+              <Message severity='error' collapsible>
                 <strong>Unable to create product: </strong>
                 {errorUpdate}
               </Message>

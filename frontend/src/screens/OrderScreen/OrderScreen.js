@@ -1,16 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 import { makeStyles } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { getOrderDetails, payOrder } from '../../actions/orderActions';
+import {
+  getOrderDetails,
+  payOrder,
+  deliverOrder,
+} from '../../actions/orderActions';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import Message from '../../components/Message/Message';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
-import { ORDER_PAY_RESET } from '../../constants/orderConstants';
+import {
+  ORDER_PAY_RESET,
+  ORDER_DELIVER_RESET,
+} from '../../constants/orderConstants';
 import OrderInfo from './components/OrderInfo';
 import OrderPayment from './components/OrderPayment';
+import AdminActions from './components/AdminActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
   const orderId = match.params.id;
 
   // initializations
@@ -85,6 +94,12 @@ const OrderScreen = ({ match }) => {
   const orderPay = useSelector((state) => state.orderPay);
   const { loading: loadingPay, success: successPay } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
   if (!loading && !error) {
     const cartSubtotal = cartSubtotalHelper(order.orderItems);
     order.cartSubtotalCount = cartSubtotal.cartSubtotalCount;
@@ -92,6 +107,10 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
+    if (!userInfo) {
+      history.push('/login');
+    }
+
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get('/api/config/paypal');
 
@@ -106,8 +125,9 @@ const OrderScreen = ({ match }) => {
       document.body.appendChild(script);
     };
 
-    if (!order || successPay) {
+    if (!order || successPay || successDeliver) {
       dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       if (!window.paypal) {
@@ -116,10 +136,25 @@ const OrderScreen = ({ match }) => {
         setSdkReady(true);
       }
     }
-  }, [dispatch, orderId, successPay, order]);
+  }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
     dispatch(payOrder(orderId, paymentResult));
+  };
+
+  const cashSuccessPaymentHandler = () => {
+    dispatch(
+      payOrder(orderId, {
+        id: uuidv4(),
+        status: 'COMPLETED',
+        update_time: Date.now(),
+        payer: { email_address: userInfo.email },
+      })
+    );
+  };
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
   };
 
   return (
@@ -127,7 +162,9 @@ const OrderScreen = ({ match }) => {
       {loading ? (
         <CircularLoader variant='indeterminate' />
       ) : error ? (
-        <Message severity='error'>{error}</Message>
+        <Message severity='error' collapsible>
+          {error}
+        </Message>
       ) : (
         <Grid container spacing={3}>
           <Grid item xs={12} sm={12} md={8} lg={9} xl={9}>
@@ -141,6 +178,17 @@ const OrderScreen = ({ match }) => {
               sdkReady={sdkReady}
               successPaymentHandler={successPaymentHandler}
             />
+            {userInfo && userInfo.isAdmin && !order.isDelivered && (
+              <div style={{ marginTop: '1.5rem' }}>
+                {loadingDeliver && <CircularLoader variant='indeterminate' />}
+                <AdminActions
+                  classes={classes}
+                  order={order}
+                  cashSuccessPaymentHandler={cashSuccessPaymentHandler}
+                  deliverHandler={deliverHandler}
+                />
+              </div>
+            )}
           </Grid>
         </Grid>
       )}

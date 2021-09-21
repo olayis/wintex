@@ -29,7 +29,9 @@ const HomeScreen = () => {
           ))}
         </Grid>
       ) : error ? (
-        <Message severity='error'>{error}</Message>
+        <Message severity='error' collapsible>
+          {error}
+        </Message>
       ) : (
         <Grid container spacing={3}>
           {products.map((product) => (

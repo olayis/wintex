@@ -1,16 +1,10 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { Controller, useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { createTheme, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import CircularLoader from '../../../components/Loaders/CircularLoader';
+import uploadFileHelper from '../../../helpers/uploadFileHelper';
+import ImageUploadDialog from '../../../components/Upload/ImageUploadDialog';
 
 const defaultTheme = createTheme();
 
@@ -42,14 +36,11 @@ const useStyles = makeStyles(
 
 const RowImageCell = ({ api, id, value }) => {
   const classes = useStyles();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [newImage, setNewImage] = useState('');
+  const [message, setMessage] = useState({ text: '', severity: '' });
 
   const isInEditMode = api.getRowMode(id) === 'edit';
 
@@ -61,10 +52,19 @@ const RowImageCell = ({ api, id, value }) => {
     setUploadDialogOpen(false);
   };
 
-  const onSubmit = ({ image }) => {
-    if (image) {
-      console.log('Image Uploaded: ', image);
+  const uploadFileHandler = async (e) => {
+    setUploading(true);
+
+    const result = await uploadFileHelper(e);
+
+    if (result.data) {
+      const row = api.getRow(id);
+      row.image = result.data;
+      setNewImage(result.data);
     }
+
+    setMessage({ text: result.text, severity: result.severity });
+    setUploading(false);
   };
 
   if (isInEditMode) {
@@ -83,41 +83,16 @@ const RowImageCell = ({ api, id, value }) => {
           </Button>
         </div>
         <div>
-          <Dialog
-            open={uploadDialogOpen}
-            onClose={handleUploadDialogClose}
-            aria-labelledby='upload-dialog-title'
-            aria-describedby='upload-dialog-description'
-          >
-            <DialogTitle id='upload-dialog-title'>{`Upload a new image`}</DialogTitle>
-            <DialogContent>
-              <img className={classes.img} src={value} alt={id} />
-              <div className={classes.root}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <input type='file' {...register('image')} />
-                  <Button
-                    type='submit'
-                    variant='contained'
-                    color='primary'
-                    className={classes.button}
-                    startIcon={<CloudUploadIcon />}
-                  >
-                    Upload
-                  </Button>
-                </form>
-                {uploading && <CircularLoader />}
-              </div>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={handleUploadDialogClose}
-                color='primary'
-                autoFocus
-              >
-                Cancel
-              </Button>
-            </DialogActions>
-          </Dialog>
+          <ImageUploadDialog
+            uploadDialogOpen={uploadDialogOpen}
+            handleUploadDialogClose={handleUploadDialogClose}
+            message={message}
+            uploadFileHandler={uploadFileHandler}
+            uploading={uploading}
+            imageSrc={value}
+            imageAlt={id}
+            newImageSrc={newImage}
+          />
         </div>
       </>
     );

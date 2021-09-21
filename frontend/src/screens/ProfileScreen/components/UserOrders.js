@@ -64,7 +64,9 @@ const UserOrders = ({ classes, orders, loadingOrders, errorOrders }) => {
       {loadingOrders ? (
         <CircularLoader variant='indeterminate' />
       ) : errorOrders ? (
-        <Message severity='error'>{errorOrders}</Message>
+        <Message severity='error' collapsible>
+          {errorOrders}
+        </Message>
       ) : orders.length === 0 ? (
         <Illustration
           actionLink='/cart'
@@ -124,7 +126,7 @@ const UserOrders = ({ classes, orders, loadingOrders, errorOrders }) => {
                       <StyledTableCell align='right'>
                         <Link
                           component={RouterLink}
-                          to={`/order/${order._id}`}
+                          to={`/orders/${order._id}`}
                           underline='none'
                         >
                           <Button color='primary' size='small' disableElevation>

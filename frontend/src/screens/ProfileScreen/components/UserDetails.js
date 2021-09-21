@@ -66,9 +66,21 @@ const UserDetails = ({
       </Typography>
 
       {loading && <CircularLoader variant='indeterminate' />}
-      {error && <Message severity='error'>{error}</Message>}
-      {success && <Message severity='success'>Profile Updated</Message>}
-      {fieldsError && <Message severity='error'>{fieldsError}</Message>}
+      {error && (
+        <Message severity='error' collapsible>
+          {error}
+        </Message>
+      )}
+      {success && (
+        <Message severity='success' collapsible>
+          Profile Updated
+        </Message>
+      )}
+      {fieldsError && (
+        <Message severity='error' collapsible>
+          {fieldsError}
+        </Message>
+      )}
 
       <div className={classes.justifyCenter}>
         <div>

@@ -20,15 +20,19 @@ import {
 } from './reducers/userReducers';
 import {
   orderCreateReducer,
+  orderDeliverReducer,
   orderDetailsReducer,
   orderListMyReducer,
+  orderListReducer,
   orderPayReducer,
 } from './reducers/orderReducers';
 
 const reducer = combineReducers({
   cart: cartReducer,
   orderCreate: orderCreateReducer,
+  orderDeliver: orderDeliverReducer,
   orderDetails: orderDetailsReducer,
+  orderList: orderListReducer,
   orderListMy: orderListMyReducer,
   orderPay: orderPayReducer,
   productCreate: productCreateReducer,

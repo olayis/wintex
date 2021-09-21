@@ -1,7 +1,4 @@
 import { PayPalButton } from 'react-paypal-button-v2';
-import { Link as RouterLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import CircularLoader from '../../../components/Loaders/CircularLoader';
 import OrderSummary from '../../CheckoutScreen/components/ConfirmOrder/OrderSummary';
@@ -42,33 +39,21 @@ const OrderPayment = ({
             imgWidth='300'
           />
         ) : (
-          <>
-            <Link
-              component={RouterLink}
-              to='/login'
-              underline='none'
-              style={{ marginTop: '1.5rem', marginBottom: '1.5rem' }}
-            >
-              <Button variant='outlined' color='primary'>
-                Modify Order
-              </Button>
-            </Link>
-            <div>
-              {order.paymentMethod === 'PayPal' ||
-              order.paymentMethod === 'Debit/Credit Card' ? (
-                !sdkReady ? (
-                  <CircularLoader variant='indeterminate' />
-                ) : (
-                  <PayPalButton
-                    amount={order.totalPrice}
-                    onSuccess={successPaymentHandler}
-                  />
-                )
+          <div>
+            {order.paymentMethod === 'PayPal' ||
+            order.paymentMethod === 'Debit/Credit Card' ? (
+              !sdkReady ? (
+                <CircularLoader variant='indeterminate' />
               ) : (
-                ''
-              )}
-            </div>
-          </>
+                <PayPalButton
+                  amount={order.totalPrice}
+                  onSuccess={successPaymentHandler}
+                />
+              )
+            ) : (
+              ''
+            )}
+          </div>
         )}
       </div>
     </Paper>

@@ -3,8 +3,8 @@ import Link from '@material-ui/core/Link';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 
-const convertAdimStatusToIcon = (isAdmin) =>
-  isAdmin ? (
+const convertStatusToIcon = (status) =>
+  status ? (
     <CheckIcon style={{ color: green[500] }} />
   ) : (
     <CloseIcon color='error' />
@@ -18,4 +18,4 @@ const convertEmailToLink = (email) => (
 
 const convertItemToLink = (link, text) => <Link href={link}>{text}</Link>;
 
-export { convertAdimStatusToIcon, convertEmailToLink, convertItemToLink };
+export { convertStatusToIcon, convertEmailToLink, convertItemToLink };

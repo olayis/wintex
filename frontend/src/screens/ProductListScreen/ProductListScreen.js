@@ -102,7 +102,9 @@ const ProductListScreen = ({ history }) => {
           <p style={{ textAlign: 'center' }}>Loading...</p>
         </>
       ) : error ? (
-        <Message severity='error'>{error}</Message>
+        <Message severity='error' collapsible>
+          {error}
+        </Message>
       ) : products.length !== 0 ? (
         <>
           <div style={{ marginBottom: '8px' }}>
@@ -114,7 +116,7 @@ const ProductListScreen = ({ history }) => {
                 </>
               )}
               {successDelete && (
-                <Message severity='success'>
+                <Message severity='success' collapsible>
                   Product has been deleted successfully
                 </Message>
               )}
@@ -129,7 +131,11 @@ const ProductListScreen = ({ history }) => {
                   </p>
                 </>
               )}
-              {errorCreate && <Message severity='error'>{errorCreate}</Message>}
+              {errorCreate && (
+                <Message severity='error' collapsible>
+                  {errorCreate}
+                </Message>
+              )}
             </div>
 
             <div style={{ marginBottom: '5px' }}>
@@ -140,11 +146,15 @@ const ProductListScreen = ({ history }) => {
                 </>
               )}
               {successUpdate && (
-                <Message severity='success'>
+                <Message severity='success' collapsible>
                   Order has been updated successfully
                 </Message>
               )}
-              {errorUpdate && <Message severity='error'>{errorUpdate}</Message>}
+              {errorUpdate && (
+                <Message severity='error' collapsible>
+                  {errorUpdate}
+                </Message>
+              )}
             </div>
           </div>
 
