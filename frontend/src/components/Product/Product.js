@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 290,
     padding: theme.spacing(2),
     marginTop: theme.spacing(3),
+    backgroundColor: '#FAFAFA',
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(1.2),
       maxWidth: '100%',
@@ -22,17 +23,10 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 223,
     borderRadius: '3px',
-    [theme.breakpoints.down('xs')]: {
-      width: '100%',
-      height: 180,
-    },
   },
   rating: {
     display: 'flex',
     justifyContent: 'flex-start',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-    },
   },
   productTitle: {
     fontWeight: '400',
@@ -44,7 +38,7 @@ const Product = ({ product }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={0}>
       <Link
         component={RouterLink}
         to={`/product/${product._id}`}
@@ -71,14 +65,21 @@ const Product = ({ product }) => {
               ₦{product.price}
             </Typography>
             <div className={classes.rating}>
-              <Rating name='product-rating' value={product.rating} readOnly />
-              <Typography
-                variant='body2'
-                color='textSecondary'
-                style={{ margin: '3px 0 0 8px' }}
-              >
-                ({product.numReviews})
-              </Typography>
+              {product.numReviews ? (
+                <>
+                  <Rating
+                    name='product-rating'
+                    value={product.rating}
+                    size='small'
+                    readOnly
+                  />
+                  <Typography variant='body2' color='textSecondary'>
+                    ({product.numReviews})
+                  </Typography>
+                </>
+              ) : (
+                <span style={{ height: '20px' }}></span>
+              )}
             </div>
           </CardContent>
         </CardActionArea>

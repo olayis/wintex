@@ -61,15 +61,15 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     [theme.breakpoints.down('lg')]: {
-      width: '50ch',
+      width: '40ch',
       '&:focus': {
-        width: '80ch',
+        width: '70ch',
       },
     },
     [theme.breakpoints.down('md')]: {
-      width: '35ch',
+      width: '25ch',
       '&:focus': {
-        width: '48ch',
+        width: '38ch',
       },
     },
     [theme.breakpoints.down('sm')]: {

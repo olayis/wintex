@@ -16,8 +16,16 @@ const ProductDetails = ({ loading, product }) => {
         </>
       ) : (
         <>
-          <ListItem divider>
+          <ListItem>
             <Typography variant='h3'>{product.name}</Typography>
+          </ListItem>
+          <ListItem style={{ marginTop: '-12px' }}>
+            <Typography variant='overline'>Brand: {product.brand}</Typography>
+          </ListItem>
+          <ListItem divider style={{ marginTop: '-25px' }}>
+            <Typography variant='overline'>
+              Category: {product.category}
+            </Typography>
           </ListItem>
           <ListItem divider>
             <Rating name='product-rating' value={product.rating} readOnly />

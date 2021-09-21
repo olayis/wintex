@@ -55,7 +55,7 @@ const ProductReviewForm = ({ paramsId }) => {
   };
 
   return (
-    <div style={{ marginTop: '1.2rem' }}>
+    <div>
       <div>
         <Typography variant='h3' align='center'>
           Write a customer review

@@ -1,9 +1,9 @@
+import { Route } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
-import InputBase from '@material-ui/core/InputBase';
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +13,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined';
 import wintexImage from '../../static/images/wintex_w_white.svg';
+import SearchBox from './SearchBox';
 
 const Navbar = ({
   accountMenuId,
@@ -45,13 +46,10 @@ const Navbar = ({
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
-          <InputBase
-            placeholder='Search for products'
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
+          <Route
+            render={({ history }) => (
+              <SearchBox classes={classes} history={history} />
+            )}
           />
         </div>
         <div className={classes.grow} />

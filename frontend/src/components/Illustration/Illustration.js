@@ -35,6 +35,7 @@ const Illustration = ({
   heading,
   actionText,
   actionLink,
+  infoText,
 }) => {
   const classes = useStyles();
 
@@ -55,6 +56,7 @@ const Illustration = ({
         >
           {heading}
         </Typography>
+        {infoText && <Typography variant='body2'>{infoText}</Typography>}
         {actionText && (
           <Link component={RouterLink} to={actionLink} className={classes.link}>
             {actionText}
