@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import numeral from 'numeral';
 import { useDispatch, useSelector } from 'react-redux';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
@@ -27,17 +28,19 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     height: 50,
     padding: theme.spacing(4),
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    backgroundColor: 'transparent',
     position: 'relative',
-    top: '300px',
+    top: '350px',
     zIndex: '10',
+    color: 'white',
   },
   imgContainer: {
-    height: 300,
+    height: 350,
     display: 'flex',
     justifyContent: 'center',
     backgroundColor: '#1a1a1a',
     borderRadius: '5px',
+    paddingBottom: '40px',
   },
   img: {
     height: '100%',
@@ -118,7 +121,7 @@ const ProductCarousel = () => {
           <Skeleton
             animation='wave'
             width='100%'
-            height='420px'
+            height='470px'
             style={{ marginTop: '-80px' }}
           />
         </>
@@ -130,7 +133,7 @@ const ProductCarousel = () => {
 
           <div
             style={{
-              height: '320px',
+              height: '370px',
               backgroundColor: '#1a1a1a',
               margin: '12px 0',
               display: 'flex',
@@ -168,7 +171,10 @@ const ProductCarousel = () => {
                   {products[activeStep] && products[activeStep].name}
                 </Typography>
                 <Typography className={classes.productPrice}>
-                  (₦{products[activeStep] && products[activeStep].price})
+                  (
+                  {products[activeStep] &&
+                    numeral(products[activeStep].price).format('$0,0.00')}
+                  )
                 </Typography>
               </Paper>
             </Link>

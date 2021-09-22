@@ -162,7 +162,7 @@ const OrderScreen = ({ match, history }) => {
   return (
     <Paper className={classes.paper} elevation={0}>
       <Meta title='Order | Wintex' />
-      <GoBack history={history} />
+      {userInfo && userInfo.isAdmin && <GoBack history={history} />}
       {loading ? (
         <CircularLoader />
       ) : error ? (

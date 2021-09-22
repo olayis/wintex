@@ -1,4 +1,5 @@
 import React from 'react';
+import numeral from 'numeral';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -71,7 +72,7 @@ const Product = ({ product }) => {
               {product.name}
             </Typography>
             <Typography variant='h6' color='textSecondary' component='p'>
-              ₦{product.price}
+              {numeral(product.price).format('$0,0.00')}
             </Typography>
             <div className={classes.rating}>
               {product.numReviews ? (

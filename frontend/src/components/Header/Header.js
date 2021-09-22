@@ -7,6 +7,7 @@ import AdminMenu from './AdminMenu';
 import MobileMenu from './MobileMenu';
 import Navbar from './Navbar';
 import { logout } from '../../actions/userActions';
+import numeral from 'numeral';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -171,7 +172,7 @@ const Header = () => {
   const cartTooltipTitle = cartSubtotalCount
     ? `${cartSubtotalCount} ${
         cartSubtotalCount === 1 ? 'item' : 'items'
-      } at ₦${cartSubtotalPrice}`
+      } at ${numeral(cartSubtotalPrice).format('$0,0.00')}`
     : 'Your Cart is empty';
 
   const cartTooltipAriaLabel = cartSubtotalCount

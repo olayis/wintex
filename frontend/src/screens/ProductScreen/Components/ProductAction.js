@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
@@ -32,7 +33,7 @@ const ProductAction = ({
                 Price:
               </Grid>
               <Grid item xs>
-                <strong>₦{product.price}</strong>
+                <strong>{numeral(product.price).format('$0,0.00')}</strong>
               </Grid>
             </Grid>
           </ListItem>

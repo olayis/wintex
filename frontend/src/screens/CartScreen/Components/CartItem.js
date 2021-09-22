@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
@@ -37,7 +38,8 @@ const CartItem = ({
 
         <Grid item md={2} sm xs={6}>
           <Typography variant='body2'>
-            <Hidden smUp>Price: </Hidden>₦{item.price}
+            <Hidden smUp>Price: </Hidden>
+            {numeral(item.price).format('$0,0.00')}
           </Typography>
         </Grid>
 
@@ -72,7 +74,7 @@ const CartItem = ({
         <Grid item md={2} sm xs>
           <Hidden smUp>Subtotal: </Hidden>
           <Typography variant='body1' display='inline'>
-            ₦{(item.price * item.qty).toFixed(2)}
+            {numeral((item.price * item.qty).toFixed(2)).format('$0,0.00')}
           </Typography>
         </Grid>
 

@@ -4,6 +4,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import numeral from 'numeral';
 
 const CartSubtotal = ({
   classes,
@@ -26,7 +27,7 @@ const CartSubtotal = ({
 
         <ListItem>
           <Typography variant='h6' className={classes.boldFont}>
-            ₦{cartSubtotalPrice}
+            {numeral(cartSubtotalPrice).format('$0,0.00')}
           </Typography>
         </ListItem>
         <Divider />

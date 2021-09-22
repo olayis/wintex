@@ -1,4 +1,6 @@
 import React from 'react';
+import numeral from 'numeral';
+import { nairaLocale } from './utils/numeralLocale';
 import Container from '@material-ui/core/Container';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/styles';
@@ -19,6 +21,9 @@ import OrderListScreen from './screens/OrderListScreen/OrderListScreen';
 // import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
 
 const App = () => {
+  const numeralConfig = nairaLocale();
+  numeral.locale(numeralConfig);
+
   return (
     <Router>
       <ThemeProvider theme={theme}>

@@ -20,7 +20,7 @@ const orderColumns = [
   { field: 'userName', headerName: 'User Name', width: 150 },
   {
     field: 'orderCount',
-    headerName: 'Orders',
+    headerName: 'Items',
     width: 130,
     type: 'number',
   },

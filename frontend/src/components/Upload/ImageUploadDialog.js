@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import Message from '../../components/Message/Message';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const defaultTheme = createTheme();
 

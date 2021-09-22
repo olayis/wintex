@@ -1,4 +1,5 @@
 import Typography from '@material-ui/core/Typography';
+import numeral from 'numeral';
 
 const OrderSummary = ({
   classes,
@@ -14,7 +15,7 @@ const OrderSummary = ({
           Shipping
         </Typography>
         <Typography variant='body2'>
-          <strong>₦{shippingPrice}</strong>
+          <strong>{numeral(shippingPrice).format('$0,0.00')}</strong>
         </Typography>
       </div>
 
@@ -23,7 +24,7 @@ const OrderSummary = ({
           Tax
         </Typography>
         <Typography variant='body2'>
-          <strong>₦{taxPrice}</strong>
+          <strong>{numeral(taxPrice).format('$0,0.00')}</strong>
         </Typography>
       </div>
 
@@ -32,7 +33,7 @@ const OrderSummary = ({
           Subtotal
         </Typography>
         <Typography variant='body2'>
-          <strong>₦{cartSubtotalPrice}</strong>
+          <strong>{numeral(cartSubtotalPrice).format('$0,0.00')}</strong>
         </Typography>
       </div>
 
@@ -41,7 +42,7 @@ const OrderSummary = ({
           Total
         </Typography>
         <Typography variant='body1'>
-          <strong>₦{totalPrice}</strong>
+          <strong>{numeral(totalPrice).format('$0,0.00')}</strong>
         </Typography>
       </div>
     </div>

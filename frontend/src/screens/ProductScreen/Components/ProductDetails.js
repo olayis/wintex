@@ -1,3 +1,4 @@
+import numeral from 'numeral';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
@@ -40,7 +41,9 @@ const ProductDetails = ({ loading, product }) => {
             </Typography>
           </ListItem>
           <ListItem divider>
-            <Typography variant='subtitle1'>Price: ₦{product.price}</Typography>
+            <Typography variant='subtitle1'>
+              Price: {numeral(product.price).format('$0,0.00')}
+            </Typography>
           </ListItem>
           <ListItem divider>
             <Typography variant='body2'>
