@@ -25,7 +25,7 @@ const OrderPayment = ({
       <div style={{ marginTop: '1.5rem' }}>
         {loadingPay && (
           <div style={{ marginBottom: '12px' }}>
-            <CircularLoader variant='indeterminate' />
+            <CircularLoader />
           </div>
         )}
         {order.isPaid ? (
@@ -43,7 +43,7 @@ const OrderPayment = ({
             {order.paymentMethod === 'PayPal' ||
             order.paymentMethod === 'Debit/Credit Card' ? (
               !sdkReady ? (
-                <CircularLoader variant='indeterminate' />
+                <CircularLoader />
               ) : (
                 <PayPalButton
                   amount={order.totalPrice}

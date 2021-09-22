@@ -68,7 +68,7 @@ const OrderListScreen = ({ history }) => {
       </Typography>
       {loading ? (
         <>
-          <CircularLoader variant='indeterminate' />
+          <CircularLoader />
           <p style={{ textAlign: 'center' }}>Loading...</p>
         </>
       ) : error ? (

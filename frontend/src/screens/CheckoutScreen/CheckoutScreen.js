@@ -117,7 +117,7 @@ const CheckoutScreen = ({ history }) => {
         <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
           <Paper className={classes.paper}>
             {loading ? (
-              <CircularLoader variant='indeterminate' />
+              <CircularLoader />
             ) : error ? (
               <Message severity='error' collapsible>
                 {error}

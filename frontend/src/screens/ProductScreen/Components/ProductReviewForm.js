@@ -63,9 +63,7 @@ const ProductReviewForm = ({ paramsId }) => {
         {userInfo ? (
           <>
             <div style={{ margin: '1rem 0' }}>
-              {loadingProductReiew && (
-                <CircularLoader variant='indeterminate' />
-              )}
+              {loadingProductReiew && <CircularLoader />}
               {message.text && (
                 <Message severity={message.severity} collapsible>
                   {message.text}

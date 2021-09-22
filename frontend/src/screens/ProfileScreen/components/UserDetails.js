@@ -65,7 +65,7 @@ const UserDetails = ({
         User Profile
       </Typography>
 
-      {loading && <CircularLoader variant='indeterminate' />}
+      {loading && <CircularLoader />}
       {error && (
         <Message severity='error' collapsible>
           {error}

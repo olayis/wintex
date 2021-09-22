@@ -107,7 +107,7 @@ const UserListScreen = ({ history }) => {
       </Typography>
       {loading ? (
         <>
-          <CircularLoader variant='indeterminate' />
+          <CircularLoader />
           <p style={{ textAlign: 'center' }}>Loading...</p>
         </>
       ) : error ? (
@@ -120,7 +120,7 @@ const UserListScreen = ({ history }) => {
             <div style={{ marginBottom: '5px' }}>
               {loadingDelete && (
                 <>
-                  <CircularLoader variant='indeterminate' />
+                  <CircularLoader />
                   <p style={{ textAlign: 'center' }}>Deleting...</p>
                 </>
               )}
@@ -133,7 +133,7 @@ const UserListScreen = ({ history }) => {
             <div style={{ marginBottom: '5px' }}>
               {loadingUpdate && (
                 <>
-                  <CircularLoader variant='indeterminate' />
+                  <CircularLoader />
                   <p style={{ textAlign: 'center' }}>Updating...</p>
                 </>
               )}

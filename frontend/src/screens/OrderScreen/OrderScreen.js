@@ -160,7 +160,7 @@ const OrderScreen = ({ match, history }) => {
   return (
     <Paper className={classes.paper} elevation={0}>
       {loading ? (
-        <CircularLoader variant='indeterminate' />
+        <CircularLoader />
       ) : error ? (
         <Message severity='error' collapsible>
           {error}
@@ -180,7 +180,7 @@ const OrderScreen = ({ match, history }) => {
             />
             {userInfo && userInfo.isAdmin && !order.isDelivered && (
               <div style={{ marginTop: '1.5rem' }}>
-                {loadingDeliver && <CircularLoader variant='indeterminate' />}
+                {loadingDeliver && <CircularLoader />}
                 <AdminActions
                   classes={classes}
                   order={order}

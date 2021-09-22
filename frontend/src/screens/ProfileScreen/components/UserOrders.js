@@ -62,7 +62,7 @@ const UserOrders = ({ classes, orders, loadingOrders, errorOrders }) => {
         My Orders
       </Typography>
       {loadingOrders ? (
-        <CircularLoader variant='indeterminate' />
+        <CircularLoader />
       ) : errorOrders ? (
         <Message severity='error' collapsible>
           {errorOrders}

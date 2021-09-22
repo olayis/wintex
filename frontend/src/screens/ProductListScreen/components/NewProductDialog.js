@@ -68,7 +68,7 @@ const NewProductDialog = ({
         <div style={{ marginBottom: '5px' }}>
           {loadingDelete && (
             <>
-              <CircularLoader variant='indeterminate' />
+              <CircularLoader />
               <p style={{ textAlign: 'center' }}>Deleting...</p>
             </>
           )}
@@ -76,7 +76,7 @@ const NewProductDialog = ({
         <div style={{ marginBottom: '5px' }}>
           {loadingCreate && (
             <>
-              <CircularLoader variant='indeterminate' />
+              <CircularLoader />
               <p style={{ textAlign: 'center' }}>
                 Initializing a new product...
               </p>
@@ -91,7 +91,7 @@ const NewProductDialog = ({
           <div style={{ marginBottom: '5px' }}>
             {loadingUpdate && (
               <>
-                <CircularLoader variant='indeterminate' />
+                <CircularLoader />
                 <p style={{ textAlign: 'center' }}>Creating product...</p>
               </>
             )}
