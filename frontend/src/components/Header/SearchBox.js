@@ -26,7 +26,11 @@ const SearchBox = ({ classes, history }) => {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
-      <Button type='submit' variant='contained'>
+      <Button
+        type='submit'
+        variant='contained'
+        className={classes.searchButton}
+      >
         Search
       </Button>
     </form>

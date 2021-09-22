@@ -52,6 +52,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  searchButton: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
   inputRoot: {
     color: 'inherit',
   },
