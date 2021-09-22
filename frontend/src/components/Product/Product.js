@@ -23,6 +23,13 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 223,
     borderRadius: '3px',
+    backgroundColor: '#fff',
+  },
+  mediaImage: {
+    height: 223,
+    maxWidth: '100%',
+    display: 'block',
+    margin: '0 auto',
   },
   rating: {
     display: 'flex',
@@ -37,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
 const Product = ({ product }) => {
   const classes = useStyles();
 
+  console.log('PRODUCT IMAGE: ', product.image);
+
   return (
     <Card className={classes.root} elevation={0}>
       <Link
@@ -45,11 +54,13 @@ const Product = ({ product }) => {
         underline='none'
       >
         <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={product.image}
-            title={product.name}
-          />
+          <CardMedia className={classes.media} title={product.name}>
+            <img
+              src={product.image}
+              alt={product.name}
+              className={classes.mediaImage}
+            />
+          </CardMedia>
 
           <CardContent>
             <Typography
