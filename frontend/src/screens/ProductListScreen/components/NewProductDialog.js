@@ -58,7 +58,7 @@ const NewProductDialog = ({
   return (
     <Dialog
       open={open}
-      onClose={handleAddDialogCloseOnCancel}
+      onClose={loadingCreate ? () => {} : handleAddDialogCloseOnCancel}
       aria-labelledby='form-dialog-title'
     >
       <DialogTitle id='form-dialog-title' style={{ textAlign: 'center' }}>

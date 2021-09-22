@@ -6,6 +6,7 @@ import { green } from '@material-ui/core/colors';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularLoader from '../../components/Loaders/CircularLoader';
+import ExportToolbar from '../../components/Toolbar/ExportToolbar';
 import Illustration from '../../components/Illustration/Illustration';
 import Message from '../../components/Message/Message';
 import { listUsers } from '../../actions/userActions';
@@ -162,6 +163,9 @@ const UserListScreen = ({ history }) => {
                 onRowEditStop={handleRowEditStop}
                 editRowsModel={editRowsModel}
                 onEditRowsModelChange={handleEditRowsModelChange}
+                components={{
+                  Toolbar: ExportToolbar,
+                }}
               />
             </ThemeProvider>
           </div>
