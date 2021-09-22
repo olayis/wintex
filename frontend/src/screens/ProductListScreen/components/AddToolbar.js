@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import { GridToolbarContainer } from '@mui/x-data-grid';
+import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import NewProductDialog from './NewProductDialog';
 import { createProduct, deleteProduct } from '../../../actions/productActions';
 
@@ -36,7 +36,9 @@ const AddToolbar = () => {
 
   return (
     <>
-      <GridToolbarContainer>
+      <GridToolbarContainer
+        style={{ display: 'flex', justifyContent: 'space-between' }}
+      >
         <Button
           startIcon={<AddIcon />}
           variant='contained'
@@ -44,6 +46,7 @@ const AddToolbar = () => {
         >
           Add product
         </Button>
+        <GridToolbarExport />
       </GridToolbarContainer>
       <NewProductDialog
         open={addDialogOpen}
