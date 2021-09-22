@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import Illustration from '../../components/Illustration/Illustration';
 import Message from '../../components/Message/Message';
+import ExportToolbar from '../../components/Toolbar/ExportToolbar';
 import { listOrders } from '../../actions/orderActions';
 import noOrdersImage from '../../static/images/empty_order.svg';
 import orderRows from './data/orderRows';
@@ -83,6 +84,9 @@ const OrderListScreen = ({ history }) => {
               columns={orderColumns}
               pageSize={20}
               rowsPerPageOptions={[20]}
+              components={{
+                Toolbar: ExportToolbar,
+              }}
             />
           </ThemeProvider>
         </div>
