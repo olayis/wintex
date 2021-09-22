@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import Avatar from '@material-ui/core/Avatar';
-import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -11,11 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import EmailIcon from '@material-ui/icons/Email';
-import EditIcon from '@material-ui/icons/Edit';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Message from '../../../components/Message/Message';
-import sampleUserImage from '../../../static/images/sample_user2.jpg';
 import CircularLoader from '../../../components/Loaders/CircularLoader';
 
 const UserDetails = ({
@@ -28,7 +25,6 @@ const UserDetails = ({
   fieldsError,
   nameFromDB,
   emailFromDB,
-  editUserImage,
   updatingUserDetails,
 }) => {
   // hooks
@@ -65,54 +61,36 @@ const UserDetails = ({
         User Profile
       </Typography>
 
-      {loading && <CircularLoader />}
-      {error && (
-        <Message severity='error' collapsible>
-          {error}
-        </Message>
-      )}
-      {success && (
-        <Message severity='success' collapsible>
-          Profile Updated
-        </Message>
-      )}
-      {fieldsError && (
-        <Message severity='error' collapsible>
-          {fieldsError}
-        </Message>
-      )}
+      <div style={{ marginBottom: '8px' }}>
+        {error && (
+          <Message severity='error' collapsible>
+            {error}
+          </Message>
+        )}
+        {success && (
+          <Message severity='success' collapsible>
+            Profile Updated
+          </Message>
+        )}
+        {fieldsError && (
+          <Message severity='error' collapsible>
+            {fieldsError}
+          </Message>
+        )}
+      </div>
 
       <div className={classes.justifyCenter}>
         <div>
           <div className={classes.justifyCenter}>
-            <Badge
-              overlap='circular'
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              badgeContent={
-                <IconButton
-                  aria-label='edit user image'
-                  onClick={editUserImage}
-                  onMouseDown={handleMouseDownPassword}
-                  style={{
-                    border: '1px solid #1a1a1a',
-                    padding: '3px',
-                    borderRadius: '50%',
-                    backgroundColor: '#fff',
-                  }}
-                >
-                  <EditIcon style={{ fontSize: 18 }} />
-                </IconButton>
-              }
-            >
-              <Avatar
-                alt={nameFromDB}
-                src={sampleUserImage}
-                className={classes.avatarLarge}
-              />
-            </Badge>
+            <Avatar className={classes.avatarLarge}>
+              {loading ? (
+                <CircularLoader />
+              ) : error ? (
+                '?'
+              ) : (
+                nameFromDB && nameFromDB.substring(0, 1)
+              )}
+            </Avatar>
           </div>
           <div>
             <Typography

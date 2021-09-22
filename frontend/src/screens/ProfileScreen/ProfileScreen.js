@@ -113,7 +113,6 @@ const ProfileScreen = ({ history }) => {
     }
 
     if (success) {
-      console.log('SUCCESSSS');
       setUpdatingUserDetails(false);
       setTimeout(() => {
         history.go(0);
@@ -143,10 +142,6 @@ const ProfileScreen = ({ history }) => {
     }
   };
 
-  const editUserImage = () => {
-    console.log('Edit User Image');
-  };
-
   return (
     <>
       <GoBack history={history} />
@@ -162,7 +157,6 @@ const ProfileScreen = ({ history }) => {
               error={error}
               nameFromDB={nameFromDB}
               emailFromDB={emailFromDB}
-              editUserImage={editUserImage}
               fieldsError={fieldsError}
               success={success}
               updatingUserDetails={updatingUserDetails}

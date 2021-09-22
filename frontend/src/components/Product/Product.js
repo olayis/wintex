@@ -44,8 +44,6 @@ const useStyles = makeStyles((theme) => ({
 const Product = ({ product }) => {
   const classes = useStyles();
 
-  console.log('PRODUCT IMAGE: ', product.image);
-
   return (
     <Card className={classes.root} elevation={0}>
       <Link
