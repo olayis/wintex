@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 import offRoadImage from '../../static/images/off_road.svg';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,13 +30,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NotFoundScreen = () => {
+const NotFoundScreen = ({ history }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div>
         <Meta title='Page Not Found | Wintex' />
+        <GoBack history={history} />
         <Typography
           variant={'h1'}
           color='textSecondary'

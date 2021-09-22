@@ -21,6 +21,7 @@ import OrderInfo from './components/OrderInfo';
 import OrderPayment from './components/OrderPayment';
 import AdminActions from './components/AdminActions';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -161,6 +162,7 @@ const OrderScreen = ({ match, history }) => {
   return (
     <Paper className={classes.paper} elevation={0}>
       <Meta title='Order | Wintex' />
+      <GoBack history={history} />
       {loading ? (
         <CircularLoader />
       ) : error ? (

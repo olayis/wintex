@@ -14,6 +14,7 @@ import noOrdersImage from '../../static/images/empty_order.svg';
 import orderRows from './data/orderRows';
 import orderColumns from './data/orderColumns';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const defaultTheme = createTheme();
 
@@ -63,47 +64,54 @@ const OrderListScreen = ({ history }) => {
   }, [dispatch, history, userInfo]);
 
   return (
-    <Paper style={{ padding: '16px', marginTop: '12px' }}>
-      <Meta title='Orders | Wintex' />
-      <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
-        Orders
-      </Typography>
-      {loading ? (
-        <>
-          <CircularLoader />
-          <p style={{ textAlign: 'center' }}>Loading...</p>
-        </>
-      ) : error ? (
-        <Message severity='error' collapsible>
-          {error}
-        </Message>
-      ) : orders.length !== 0 ? (
-        <div style={{ height: 550, width: '100%' }}>
-          <ThemeProvider theme={overrideTheme}>
-            <DataGrid
-              className={classes.root}
-              rows={orderRows(orders)}
-              columns={orderColumns}
-              pageSize={20}
-              rowsPerPageOptions={[20]}
-              components={{
-                Toolbar: ExportToolbar,
-              }}
-            />
-          </ThemeProvider>
-        </div>
-      ) : (
-        <Illustration
-          actionLink='#'
-          actionText=''
-          altText='No Orders'
-          heading='No orders to display'
-          image={noOrdersImage}
-          imgHeight={273}
-          imgWidth={300}
-        />
-      )}
-    </Paper>
+    <>
+      <GoBack history={history} />
+      <Paper style={{ padding: '16px', marginTop: '12px' }}>
+        <Meta title='Orders | Wintex' />
+        <Typography
+          variant='h1'
+          style={{ marginBottom: '16px' }}
+          align='center'
+        >
+          Orders
+        </Typography>
+        {loading ? (
+          <>
+            <CircularLoader />
+            <p style={{ textAlign: 'center' }}>Loading...</p>
+          </>
+        ) : error ? (
+          <Message severity='error' collapsible>
+            {error}
+          </Message>
+        ) : orders.length !== 0 ? (
+          <div style={{ height: 550, width: '100%' }}>
+            <ThemeProvider theme={overrideTheme}>
+              <DataGrid
+                className={classes.root}
+                rows={orderRows(orders)}
+                columns={orderColumns}
+                pageSize={20}
+                rowsPerPageOptions={[20]}
+                components={{
+                  Toolbar: ExportToolbar,
+                }}
+              />
+            </ThemeProvider>
+          </div>
+        ) : (
+          <Illustration
+            actionLink='#'
+            actionText=''
+            altText='No Orders'
+            heading='No orders to display'
+            image={noOrdersImage}
+            imgHeight={273}
+            imgWidth={300}
+          />
+        )}
+      </Paper>
+    </>
   );
 };
 

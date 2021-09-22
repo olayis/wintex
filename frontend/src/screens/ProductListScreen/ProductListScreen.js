@@ -18,6 +18,7 @@ import {
   PRODUCT_UPDATE_RESET,
 } from '../../constants/productConstants';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const defaultTheme = createTheme();
 
@@ -93,101 +94,108 @@ const ProductListScreen = ({ history }) => {
   };
 
   return (
-    <Paper style={{ padding: '16px', marginTop: '12px' }}>
-      <Meta title='Products | Wintex' />
-      <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
-        Products
-      </Typography>
-      {loading ? (
-        <>
-          <CircularLoader />
-          <p style={{ textAlign: 'center' }}>Loading...</p>
-        </>
-      ) : error ? (
-        <Message severity='error' collapsible>
-          {error}
-        </Message>
-      ) : products.length !== 0 ? (
-        <>
-          <div style={{ marginBottom: '8px' }}>
-            <div style={{ marginBottom: '5px' }}>
-              {loadingDelete && (
-                <>
-                  <CircularLoader />
-                  <p style={{ textAlign: 'center' }}>Deleting...</p>
-                </>
-              )}
-              {successDelete && (
-                <Message severity='success' collapsible>
-                  Product has been deleted successfully
-                </Message>
-              )}
+    <>
+      <GoBack history={history} />
+      <Paper style={{ padding: '16px', marginTop: '12px' }}>
+        <Meta title='Products | Wintex' />
+        <Typography
+          variant='h1'
+          style={{ marginBottom: '16px' }}
+          align='center'
+        >
+          Products
+        </Typography>
+        {loading ? (
+          <>
+            <CircularLoader />
+            <p style={{ textAlign: 'center' }}>Loading...</p>
+          </>
+        ) : error ? (
+          <Message severity='error' collapsible>
+            {error}
+          </Message>
+        ) : products.length !== 0 ? (
+          <>
+            <div style={{ marginBottom: '8px' }}>
+              <div style={{ marginBottom: '5px' }}>
+                {loadingDelete && (
+                  <>
+                    <CircularLoader />
+                    <p style={{ textAlign: 'center' }}>Deleting...</p>
+                  </>
+                )}
+                {successDelete && (
+                  <Message severity='success' collapsible>
+                    Product has been deleted successfully
+                  </Message>
+                )}
+              </div>
+
+              <div style={{ marginBottom: '5px' }}>
+                {loadingCreate && (
+                  <>
+                    <CircularLoader />
+                    <p style={{ textAlign: 'center' }}>
+                      Creating a new product...
+                    </p>
+                  </>
+                )}
+                {errorCreate && (
+                  <Message severity='error' collapsible>
+                    {errorCreate}
+                  </Message>
+                )}
+              </div>
+
+              <div style={{ marginBottom: '5px' }}>
+                {loadingUpdate && (
+                  <>
+                    <CircularLoader />
+                    <p style={{ textAlign: 'center' }}>Updating...</p>
+                  </>
+                )}
+                {successUpdate && (
+                  <Message severity='success' collapsible>
+                    Order has been updated successfully
+                  </Message>
+                )}
+                {errorUpdate && (
+                  <Message severity='error' collapsible>
+                    {errorUpdate}
+                  </Message>
+                )}
+              </div>
             </div>
 
-            <div style={{ marginBottom: '5px' }}>
-              {loadingCreate && (
-                <>
-                  <CircularLoader />
-                  <p style={{ textAlign: 'center' }}>
-                    Creating a new product...
-                  </p>
-                </>
-              )}
-              {errorCreate && (
-                <Message severity='error' collapsible>
-                  {errorCreate}
-                </Message>
-              )}
+            <div style={{ height: 550, width: '100%' }}>
+              <ThemeProvider theme={overrideTheme}>
+                <DataGrid
+                  className={classes.root}
+                  rows={productRows(products)}
+                  columns={productColumns}
+                  pageSize={20}
+                  rowsPerPageOptions={[20]}
+                  editMode='row'
+                  onRowEditStart={handleRowEditStart}
+                  onRowEditStop={handleRowEditStop}
+                  components={{ Toolbar: ProductToolbar }}
+                />
+              </ThemeProvider>
             </div>
-
-            <div style={{ marginBottom: '5px' }}>
-              {loadingUpdate && (
-                <>
-                  <CircularLoader />
-                  <p style={{ textAlign: 'center' }}>Updating...</p>
-                </>
-              )}
-              {successUpdate && (
-                <Message severity='success' collapsible>
-                  Order has been updated successfully
-                </Message>
-              )}
-              {errorUpdate && (
-                <Message severity='error' collapsible>
-                  {errorUpdate}
-                </Message>
-              )}
-            </div>
-          </div>
-
-          <div style={{ height: 550, width: '100%' }}>
-            <ThemeProvider theme={overrideTheme}>
-              <DataGrid
-                className={classes.root}
-                rows={productRows(products)}
-                columns={productColumns}
-                pageSize={20}
-                rowsPerPageOptions={[20]}
-                editMode='row'
-                onRowEditStart={handleRowEditStart}
-                onRowEditStop={handleRowEditStop}
-                components={{ Toolbar: ProductToolbar }}
-              />
-            </ThemeProvider>
-          </div>
-        </>
-      ) : (
-        <Illustration
-          actionLink='#'
-          actionText=''
-          altText='No Products'
-          heading={'No products available'}
-          image={noProductsImage}
-          imgHeight={225}
-          imgWidth={318}
-        />
-      )}
-    </Paper>
+          </>
+        ) : (
+          <Illustration
+            actionLink='#'
+            actionText=''
+            altText='No Products'
+            heading={'No products available'}
+            image={noProductsImage}
+            imgHeight={225}
+            imgWidth={318}
+          />
+        )}
+      </Paper>
+    </>
   );
 };
 

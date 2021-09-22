@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { listProductDetails } from '../../actions/productActions';
 import Message from '../../components/Message/Message';
@@ -15,6 +13,7 @@ import ProductImage from './components/ProductImage';
 import ProductReviews from './components/ProductReviews';
 import ProductReviewForm from './components/ProductReviewForm';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -35,10 +34,6 @@ const ProductScreen = ({ history, match }) => {
     history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
 
-  const goBack = () => {
-    history.goBack();
-  };
-
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGGrid: 1,
@@ -56,26 +51,13 @@ const ProductScreen = ({ history, match }) => {
       width: '100%',
       marginTop: theme.spacing(2),
     },
-    backLink: {
-      display: 'block',
-      marginBottom: theme.spacing(3),
-    },
-    icon: {
-      verticalAlign: 'middle',
-      marginRight: '5px',
-    },
   }));
 
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Button className={classes.backLink} onClick={goBack}>
-          <Typography variant='button'>
-            <ArrowBackIcon className={classes.icon} />
-            Go Back
-          </Typography>
-        </Button>
+        <GoBack history={history} />
 
         {error ? (
           <Message severity='error'>{error}</Message>

@@ -12,8 +12,9 @@ import searchImage from '../../static/images/searching.svg';
 import ProductCarousel from '../../components/Product/ProductCarousel';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
-const HomeScreen = ({ match }) => {
+const HomeScreen = ({ match, history }) => {
   const keyword = match.params.keyword;
 
   const pageNumber = match.params.pageNumber || 1;
@@ -30,7 +31,7 @@ const HomeScreen = ({ match }) => {
   return (
     <>
       <Meta />
-      {!keyword && <ProductCarousel />}
+      {keyword ? <GoBack history={history} /> : <ProductCarousel />}
       {loading ? (
         <>
           {keyword ? (
@@ -38,7 +39,7 @@ const HomeScreen = ({ match }) => {
               animation='wave'
               width='20%'
               height='30px'
-              style={{ marginLeft: '8px' }}
+              style={{ marginLeft: '12px' }}
             />
           ) : (
             <Skeleton
@@ -65,7 +66,7 @@ const HomeScreen = ({ match }) => {
           {keyword ? (
             <Typography
               variant='overline'
-              style={{ margin: '5px 0', fontSize: '1rem' }}
+              style={{ margin: '5px 0 0 16px', fontSize: '0.95rem' }}
               component='h1'
             >
               {count} products found

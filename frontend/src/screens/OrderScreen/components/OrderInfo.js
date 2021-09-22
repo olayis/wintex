@@ -9,7 +9,8 @@ const OrderInfo = ({ classes, order }) => {
   return (
     <Paper className={`${classes.paper} ${classes.paperList}`} elevation={2}>
       <Typography
-        variant='h1'
+        variant='h2'
+        component='h1'
         className={classes.heading}
         align='center'
         noWrap

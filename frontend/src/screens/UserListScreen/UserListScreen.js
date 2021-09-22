@@ -16,6 +16,7 @@ import userRows from './data/userRows';
 import userColumns from './data/userColumns';
 import { validateEmail } from '../../helpers/validators';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const defaultTheme = createTheme();
 
@@ -102,88 +103,95 @@ const UserListScreen = ({ history }) => {
   }, []);
 
   return (
-    <Paper style={{ padding: '16px', marginTop: '12px' }}>
-      <Meta title='Users | Wintex' />
-      <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
-        Users
-      </Typography>
-      {loading ? (
-        <>
-          <CircularLoader />
-          <p style={{ textAlign: 'center' }}>Loading...</p>
-        </>
-      ) : error ? (
-        <Message severity='error' collapsible>
-          {error}
-        </Message>
-      ) : users.length !== 0 ? (
-        <>
-          <div style={{ marginBottom: '8px' }}>
-            <div style={{ marginBottom: '5px' }}>
-              {loadingDelete && (
-                <>
-                  <CircularLoader />
-                  <p style={{ textAlign: 'center' }}>Deleting...</p>
-                </>
-              )}
-              {successDelete && (
-                <Message severity='success' collapsible>
-                  User has been deleted successfully
-                </Message>
-              )}
+    <>
+      <GoBack history={history} />
+      <Paper style={{ padding: '16px', marginTop: '12px' }}>
+        <Meta title='Users | Wintex' />
+        <Typography
+          variant='h1'
+          style={{ marginBottom: '16px' }}
+          align='center'
+        >
+          Users
+        </Typography>
+        {loading ? (
+          <>
+            <CircularLoader />
+            <p style={{ textAlign: 'center' }}>Loading...</p>
+          </>
+        ) : error ? (
+          <Message severity='error' collapsible>
+            {error}
+          </Message>
+        ) : users.length !== 0 ? (
+          <>
+            <div style={{ marginBottom: '8px' }}>
+              <div style={{ marginBottom: '5px' }}>
+                {loadingDelete && (
+                  <>
+                    <CircularLoader />
+                    <p style={{ textAlign: 'center' }}>Deleting...</p>
+                  </>
+                )}
+                {successDelete && (
+                  <Message severity='success' collapsible>
+                    User has been deleted successfully
+                  </Message>
+                )}
+              </div>
+              <div style={{ marginBottom: '5px' }}>
+                {loadingUpdate && (
+                  <>
+                    <CircularLoader />
+                    <p style={{ textAlign: 'center' }}>Updating...</p>
+                  </>
+                )}
+                {successUpdate && (
+                  <Message severity='success' collapsible>
+                    User has been updated successfully
+                  </Message>
+                )}
+                {errorUpdate && (
+                  <Message severity='error' collapsible>
+                    {errorUpdate}
+                  </Message>
+                )}
+              </div>
             </div>
-            <div style={{ marginBottom: '5px' }}>
-              {loadingUpdate && (
-                <>
-                  <CircularLoader />
-                  <p style={{ textAlign: 'center' }}>Updating...</p>
-                </>
-              )}
-              {successUpdate && (
-                <Message severity='success' collapsible>
-                  User has been updated successfully
-                </Message>
-              )}
-              {errorUpdate && (
-                <Message severity='error' collapsible>
-                  {errorUpdate}
-                </Message>
-              )}
-            </div>
-          </div>
 
-          <div style={{ height: 550, width: '100%' }}>
-            <ThemeProvider theme={overrideTheme}>
-              <DataGrid
-                className={classes.root}
-                rows={userRows(users)}
-                columns={userColumns}
-                pageSize={20}
-                rowsPerPageOptions={[20]}
-                editMode='row'
-                onRowEditStart={handleRowEditStart}
-                onRowEditStop={handleRowEditStop}
-                editRowsModel={editRowsModel}
-                onEditRowsModelChange={handleEditRowsModelChange}
-                components={{
-                  Toolbar: ExportToolbar,
-                }}
-              />
-            </ThemeProvider>
-          </div>
-        </>
-      ) : (
-        <Illustration
-          actionLink='#'
-          actionText=''
-          altText='No Users'
-          heading={'No users to display'}
-          image={noUsersImage}
-          imgHeight={273}
-          imgWidth={300}
-        />
-      )}
-    </Paper>
+            <div style={{ height: 550, width: '100%' }}>
+              <ThemeProvider theme={overrideTheme}>
+                <DataGrid
+                  className={classes.root}
+                  rows={userRows(users)}
+                  columns={userColumns}
+                  pageSize={20}
+                  rowsPerPageOptions={[20]}
+                  editMode='row'
+                  onRowEditStart={handleRowEditStart}
+                  onRowEditStop={handleRowEditStop}
+                  editRowsModel={editRowsModel}
+                  onEditRowsModelChange={handleEditRowsModelChange}
+                  components={{
+                    Toolbar: ExportToolbar,
+                  }}
+                />
+              </ThemeProvider>
+            </div>
+          </>
+        ) : (
+          <Illustration
+            actionLink='#'
+            actionText=''
+            altText='No Users'
+            heading={'No users to display'}
+            image={noUsersImage}
+            imgHeight={273}
+            imgWidth={300}
+          />
+        )}
+      </Paper>
+    </>
   );
 };
 

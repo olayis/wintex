@@ -1,10 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
 import CartItems from './components/CartItems';
@@ -12,6 +10,7 @@ import CartSubtotal from './components/CartSubtotal';
 import Illustration from '../../components/Illustration/Illustration';
 import emptyCartImage from '../../static/images/empty_cart.svg';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,14 +33,6 @@ const useStyles = makeStyles((theme) => ({
   image: {
     width: '100%',
     height: 'auto',
-  },
-  backLink: {
-    display: 'block',
-    marginBottom: theme.spacing(3),
-  },
-  icon: {
-    verticalAlign: 'middle',
-    marginRight: '5px',
   },
 }));
 
@@ -82,10 +73,6 @@ const CartScreen = ({ match, location, history }) => {
     history.push('/');
   };
 
-  const goBack = () => {
-    history.goBack();
-  };
-
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -93,12 +80,8 @@ const CartScreen = ({ match, location, history }) => {
       <Typography variant='h1' className={classes.title}>
         Shopping Cart
       </Typography>
-      <Button className={classes.backLink} onClick={goBack}>
-        <Typography variant='button'>
-          <ArrowBackIcon className={classes.icon} />
-          Go Back
-        </Typography>
-      </Button>
+      <GoBack history={history} />
+
       {cartItems.length === 0 ? (
         <Illustration
           actionLink='/'

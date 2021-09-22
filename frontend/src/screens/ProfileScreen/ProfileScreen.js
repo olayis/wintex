@@ -8,6 +8,7 @@ import { listMyOrders } from '../../actions/orderActions';
 import UserDetails from './components/UserDetails';
 import UserOrders from './components/UserOrders';
 import Meta from '../../components/Meta/Meta';
+import GoBack from '../../components/Navigation/GoBack';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -147,34 +148,37 @@ const ProfileScreen = ({ history }) => {
   };
 
   return (
-    <div className={classes.root}>
-      {!loading && !error && <Meta title={`${nameFromDB} | Wintex`} />}
-      <Grid container spacing={3}>
-        <Grid item lg={3} md={4} sm={12} className={classes.grid}>
-          <UserDetails
-            classes={classes}
-            loading={loading}
-            onSubmit={onSubmit}
-            passwordsMatch={passwordsMatch}
-            error={error}
-            nameFromDB={nameFromDB}
-            emailFromDB={emailFromDB}
-            editUserImage={editUserImage}
-            fieldsError={fieldsError}
-            success={success}
-            updatingUserDetails={updatingUserDetails}
-          />
+    <>
+      <GoBack history={history} />
+      <div className={classes.root}>
+        {!loading && !error && <Meta title={`${nameFromDB} | Wintex`} />}
+        <Grid container spacing={3}>
+          <Grid item lg={3} md={4} sm={12} className={classes.grid}>
+            <UserDetails
+              classes={classes}
+              loading={loading}
+              onSubmit={onSubmit}
+              passwordsMatch={passwordsMatch}
+              error={error}
+              nameFromDB={nameFromDB}
+              emailFromDB={emailFromDB}
+              editUserImage={editUserImage}
+              fieldsError={fieldsError}
+              success={success}
+              updatingUserDetails={updatingUserDetails}
+            />
+          </Grid>
+          <Grid item lg={9} md={8} sm={12} className={classes.grid}>
+            <UserOrders
+              classes={classes}
+              orders={orders}
+              loadingOrders={loadingOrders}
+              errorOrders={errorOrders}
+            />
+          </Grid>
         </Grid>
-        <Grid item lg={9} md={8} sm={12} className={classes.grid}>
-          <UserOrders
-            classes={classes}
-            orders={orders}
-            loadingOrders={loadingOrders}
-            errorOrders={errorOrders}
-          />
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </>
   );
 };
 
