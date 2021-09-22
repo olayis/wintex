@@ -11,7 +11,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Grid from '@material-ui/core/Grid';
 import {
   PayPalIcon,
-  StripeIcon,
   CreditCardIcon,
   PaymentMethodIcon,
 } from '../../../../utils/customIcons';
@@ -75,11 +74,6 @@ const PaymentMethod = ({
             label='PayPal'
           />
           <FormControlLabel
-            value='Stripe'
-            control={<Radio color='primary' />}
-            label='Stripe'
-          />
-          <FormControlLabel
             value='Cash On Delivery'
             control={<Radio color='primary' />}
             label='Cash On Delivery'
@@ -109,17 +103,6 @@ const PaymentMethod = ({
             onClick={() => setPaymentMethod('PayPal')}
           >
             {PayPalIcon}
-          </span>
-        </Grid>
-
-        <Grid item xs>
-          <span
-            className={`${paymentMethodClasses.paymentMethodButton} ${
-              paymentMethod === 'Stripe' ? paymentMethodClasses.isSelected : ''
-            }`}
-            onClick={() => setPaymentMethod('Stripe')}
-          >
-            {StripeIcon}
           </span>
         </Grid>
 

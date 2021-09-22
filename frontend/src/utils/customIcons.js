@@ -2,7 +2,6 @@ import Icon from '@material-ui/core/Icon';
 import googleSVG from '../static/icons/google.svg';
 import facebookFilledSVG from '../static/icons/facebookFilled.svg';
 import payPalSVG from '../static/icons/paypal.svg';
-import stripeSVG from '../static/icons/stripe.svg';
 import paymentMethodSVG from '../static/icons/paymentMethod.svg';
 import creditCardSVG from '../static/icons/creditCard.svg';
 
@@ -23,12 +22,6 @@ export const GoogleIcon = (
 export const PayPalIcon = (
   <Icon>
     <img alt='PayPal' src={payPalSVG} style={iconStyle} />
-  </Icon>
-);
-
-export const StripeIcon = (
-  <Icon>
-    <img alt='Stripe' src={stripeSVG} style={iconStyle} />
   </Icon>
 );
 

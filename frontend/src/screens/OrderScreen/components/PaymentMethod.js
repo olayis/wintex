@@ -3,7 +3,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import {
   PayPalIcon,
-  StripeIcon,
   CreditCardIcon,
   PaymentMethodIcon,
 } from '../../../utils/customIcons';
@@ -21,8 +20,6 @@ const PaymentMethod = ({ classes, order }) => {
       <div className={classes.justifyCenter}>
         {order.paymentMethod === 'PayPal'
           ? PayPalIcon
-          : order.paymentMethod === 'Stripe'
-          ? StripeIcon
           : order.paymentMethod === 'Debit/Credit Card'
           ? CreditCardIcon
           : order.paymentMethod === 'Cash On Delivery'

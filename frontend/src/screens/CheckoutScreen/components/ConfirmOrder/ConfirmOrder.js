@@ -11,7 +11,6 @@ import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
 import {
   PayPalIcon,
-  StripeIcon,
   CreditCardIcon,
   PaymentMethodIcon,
 } from '../../../../utils/customIcons';
@@ -81,8 +80,6 @@ const ConfirmOrder = ({
         <div className={classes.justifyCenter}>
           {paymentMethod === 'PayPal'
             ? PayPalIcon
-            : paymentMethod === 'Stripe'
-            ? StripeIcon
             : paymentMethod === 'Debit/Credit Card'
             ? CreditCardIcon
             : paymentMethod === 'Cash On Delivery'
