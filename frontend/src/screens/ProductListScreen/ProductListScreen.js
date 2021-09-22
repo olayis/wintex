@@ -12,7 +12,7 @@ import { listProducts } from '../../actions/productActions';
 import noProductsImage from '../../static/images/web_shopping.svg';
 import productRows from './data/productRows';
 import productColumns from './data/productColumns';
-import AddToolbar from './components/AddToolbar';
+import ProductToolbar from './components/ProductToolbar';
 import {
   PRODUCT_CREATE_RESET,
   PRODUCT_UPDATE_RESET,
@@ -169,7 +169,7 @@ const ProductListScreen = ({ history }) => {
                 editMode='row'
                 onRowEditStart={handleRowEditStart}
                 onRowEditStop={handleRowEditStop}
-                components={{ Toolbar: AddToolbar }}
+                components={{ Toolbar: ProductToolbar }}
               />
             </ThemeProvider>
           </div>

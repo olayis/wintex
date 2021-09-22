@@ -6,7 +6,7 @@ import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import NewProductDialog from './NewProductDialog';
 import { createProduct, deleteProduct } from '../../../actions/productActions';
 
-const AddToolbar = () => {
+const ProductToolbar = () => {
   const dispatch = useDispatch();
 
   const productCreate = useSelector((state) => state.productCreate);
@@ -58,4 +58,4 @@ const AddToolbar = () => {
   );
 };
 
-export default AddToolbar;
+export default ProductToolbar;
