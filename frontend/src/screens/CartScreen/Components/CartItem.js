@@ -37,7 +37,14 @@ const CartItem = ({
         </Grid>
 
         <Grid item md={2} sm xs={6}>
-          <Typography variant='body2'>
+          <Typography
+            variant='body2'
+            style={{
+              maxWidth: '90px',
+              wordWrap: 'break-word',
+              display: 'inline-block',
+            }}
+          >
             <Hidden smUp>Price: </Hidden>
             {numeral(item.price).format('$0,0.00')}
           </Typography>
@@ -73,7 +80,15 @@ const CartItem = ({
 
         <Grid item md={2} sm xs>
           <Hidden smUp>Subtotal: </Hidden>
-          <Typography variant='body1' display='inline'>
+          <Typography
+            variant='body1'
+            display='inline'
+            style={{
+              maxWidth: '120px',
+              wordWrap: 'break-word',
+              display: 'inline-block',
+            }}
+          >
             {numeral((item.price * item.qty).toFixed(2)).format('$0,0.00')}
           </Typography>
         </Grid>
