@@ -17,7 +17,7 @@ const SearchBox = ({ classes, history }) => {
   return (
     <form onSubmit={submitHandler}>
       <InputBase
-        placeholder='Search products, brands and categories...'
+        placeholder='Search for items, brands and categories...'
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
