@@ -67,7 +67,7 @@ const OrderListScreen = ({ history }) => {
     <>
       <GoBack history={history} />
       <Paper style={{ padding: '16px', marginTop: '12px' }}>
-        <Meta title='Orders | Wintex' />
+        <Meta title='Orders | Admin | Wintex' />
         <Typography
           variant='h1'
           style={{ marginBottom: '16px' }}

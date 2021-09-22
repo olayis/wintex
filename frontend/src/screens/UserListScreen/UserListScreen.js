@@ -106,7 +106,7 @@ const UserListScreen = ({ history }) => {
     <>
       <GoBack history={history} />
       <Paper style={{ padding: '16px', marginTop: '12px' }}>
-        <Meta title='Users | Wintex' />
+        <Meta title='Users | Admin | Wintex' />
         <Typography
           variant='h1'
           style={{ marginBottom: '16px' }}

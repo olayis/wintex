@@ -97,7 +97,7 @@ const ProductListScreen = ({ history }) => {
     <>
       <GoBack history={history} />
       <Paper style={{ padding: '16px', marginTop: '12px' }}>
-        <Meta title='Products | Wintex' />
+        <Meta title='Products | Admin | Wintex' />
         <Typography
           variant='h1'
           style={{ marginBottom: '16px' }}
