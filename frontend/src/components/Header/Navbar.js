@@ -29,7 +29,7 @@ const Navbar = ({
   userInfo,
 }) => {
   return (
-    <AppBar position='static'>
+    <AppBar position='fixed'>
       <Toolbar>
         <Link component={RouterLink} to='/' underline='none'>
           <Typography
