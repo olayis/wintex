@@ -3,6 +3,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core';
 import offRoadImage from '../../static/images/off_road.svg';
+import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,6 +35,7 @@ const NotFoundScreen = () => {
   return (
     <div className={classes.root}>
       <div>
+        <Meta title='Page Not Found | Wintex' />
         <Typography
           variant={'h1'}
           color='textSecondary'

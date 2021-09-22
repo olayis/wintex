@@ -17,6 +17,7 @@ import {
   PRODUCT_CREATE_RESET,
   PRODUCT_UPDATE_RESET,
 } from '../../constants/productConstants';
+import Meta from '../../components/Meta/Meta';
 
 const defaultTheme = createTheme();
 
@@ -93,6 +94,7 @@ const ProductListScreen = ({ history }) => {
 
   return (
     <Paper style={{ padding: '16px', marginTop: '12px' }}>
+      <Meta title='Products | Wintex' />
       <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
         Products
       </Typography>

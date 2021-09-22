@@ -15,6 +15,7 @@ import noUsersImage from '../../static/images/users.svg';
 import userRows from './data/userRows';
 import userColumns from './data/userColumns';
 import { validateEmail } from '../../helpers/validators';
+import Meta from '../../components/Meta/Meta';
 
 const defaultTheme = createTheme();
 
@@ -102,6 +103,7 @@ const UserListScreen = ({ history }) => {
 
   return (
     <Paper style={{ padding: '16px', marginTop: '12px' }}>
+      <Meta title='Users | Wintex' />
       <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
         Users
       </Typography>

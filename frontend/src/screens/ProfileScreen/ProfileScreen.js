@@ -7,6 +7,7 @@ import { getUserDetails, updateUserProfile } from '../../actions/userActions';
 import { listMyOrders } from '../../actions/orderActions';
 import UserDetails from './components/UserDetails';
 import UserOrders from './components/UserOrders';
+import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -147,6 +148,7 @@ const ProfileScreen = ({ history }) => {
 
   return (
     <div className={classes.root}>
+      {!loading && !error && <Meta title={`${nameFromDB} | Wintex`} />}
       <Grid container spacing={3}>
         <Grid item lg={3} md={4} sm={12} className={classes.grid}>
           <UserDetails

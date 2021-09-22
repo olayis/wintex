@@ -11,6 +11,7 @@ import CartItems from './components/CartItems';
 import CartSubtotal from './components/CartSubtotal';
 import Illustration from '../../components/Illustration/Illustration';
 import emptyCartImage from '../../static/images/empty_cart.svg';
+import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,6 +89,7 @@ const CartScreen = ({ match, location, history }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <Meta title='Shopping Cart | Wintex' />
       <Typography variant='h1' className={classes.title}>
         Shopping Cart
       </Typography>

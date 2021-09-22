@@ -119,7 +119,7 @@ const ProductCarousel = () => {
             animation='wave'
             width='100%'
             height='420px'
-            style={{ marginTop: '-50px' }}
+            style={{ marginTop: '-80px' }}
           />
         </>
       ) : error ? (

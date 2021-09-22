@@ -10,6 +10,7 @@ import Message from '../../components/Message/Message';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import RegisterForm from './components/RegisterForm';
 import SignUpMethods from './components/SignUpMethods';
+import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,6 +78,7 @@ const RegisterScreen = ({ history, location }) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
+        <Meta title='Register | Wintex' />
         {loading && <CircularLoader />}
         {error && (
           <Message severity='error' collapsible>

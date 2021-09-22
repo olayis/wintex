@@ -10,6 +10,7 @@ import Message from '../../components/Message/Message';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import LoginForm from './components/LoginForm';
 import SignInMethods from './components/SignInMethods';
+import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,6 +73,7 @@ const LoginScreen = ({ history, location }) => {
 
   return (
     <div className={classes.root}>
+      <Meta title='Login | Wintex' />
       <Paper className={classes.paper}>
         {loading && <CircularLoader />}
         {error && (

@@ -13,6 +13,7 @@ import { listOrders } from '../../actions/orderActions';
 import noOrdersImage from '../../static/images/empty_order.svg';
 import orderRows from './data/orderRows';
 import orderColumns from './data/orderColumns';
+import Meta from '../../components/Meta/Meta';
 
 const defaultTheme = createTheme();
 
@@ -63,6 +64,7 @@ const OrderListScreen = ({ history }) => {
 
   return (
     <Paper style={{ padding: '16px', marginTop: '12px' }}>
+      <Meta title='Orders | Wintex' />
       <Typography variant='h1' style={{ marginBottom: '16px' }} align='center'>
         Orders
       </Typography>

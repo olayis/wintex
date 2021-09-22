@@ -14,6 +14,7 @@ import ProductDetails from './components/ProductDetails';
 import ProductImage from './components/ProductImage';
 import ProductReviews from './components/ProductReviews';
 import ProductReviewForm from './components/ProductReviewForm';
+import Meta from '../../components/Meta/Meta';
 
 const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1);
@@ -80,6 +81,7 @@ const ProductScreen = ({ history, match }) => {
           <Message severity='error'>{error}</Message>
         ) : (
           <>
+            <Meta title={product.name} />
             <Grid container spacing={3}>
               <Grid item md={6} sm={12} xs={12}>
                 <ProductImage

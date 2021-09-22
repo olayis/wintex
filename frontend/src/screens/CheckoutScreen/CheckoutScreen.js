@@ -11,6 +11,7 @@ import CheckoutStepper from './components/CheckoutStepper/CheckoutStepper';
 import Message from '../../components/Message/Message';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import { useEffect } from 'react';
+import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,6 +113,7 @@ const CheckoutScreen = ({ history }) => {
 
   return (
     <div className={classes.root}>
+      <Meta title='Checkout | Wintex' />
       <Grid container spacing={3}>
         <Grid item xl={3} lg={3} md={3} sm={false} xs={false}></Grid>
         <Grid item xl={6} lg={6} md={6} sm={12} xs={12}>

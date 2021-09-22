@@ -11,6 +11,7 @@ import Illustration from '../../components/Illustration/Illustration';
 import searchImage from '../../static/images/searching.svg';
 import ProductCarousel from '../../components/Product/ProductCarousel';
 import Skeleton from '@material-ui/lab/Skeleton';
+import Meta from '../../components/Meta/Meta';
 
 const HomeScreen = ({ match }) => {
   const keyword = match.params.keyword;
@@ -28,6 +29,7 @@ const HomeScreen = ({ match }) => {
 
   return (
     <>
+      <Meta />
       {!keyword && <ProductCarousel />}
       {loading ? (
         <>
@@ -69,7 +71,7 @@ const HomeScreen = ({ match }) => {
               {count} products found
             </Typography>
           ) : (
-            <Typography variant='h1' align='center'>
+            <Typography variant='h2' align='center'>
               Latest Products
             </Typography>
           )}
