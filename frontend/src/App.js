@@ -18,6 +18,7 @@ import OrderScreen from './screens/OrderScreen/OrderScreen';
 import UserListScreen from './screens/UserListScreen/UserListScreen';
 import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import OrderListScreen from './screens/OrderListScreen/OrderListScreen';
+import ErrorBoundary from './components/ErrorBoundary';
 // import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
 
 const App = () => {
@@ -26,32 +27,34 @@ const App = () => {
 
   return (
     <Router>
-      <ThemeProvider theme={theme}>
-        <Header />
-        <main>
-          <Container maxWidth='lg'>
-            <Route path='/cart/:id?' component={CartScreen} />
-            <Route path='/checkout' component={CheckoutScreen} />
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/orders/:id' component={OrderScreen} />
-            <Route path='/product/:id' component={ProductScreen} />
-            <Route path='/profile' component={ProfileScreen} />
-            <Route path='/register' component={RegisterScreen} />
-            <Route path='/admin/userlist' component={UserListScreen} />
-            <Route path='/admin/productlist' component={ProductListScreen} />
-            <Route path='/admin/orderlist' component={OrderListScreen} />
-            <Route path='/search/:keyword' component={HomeScreen} exact />
-            <Route path='/page/:pageNumber' component={HomeScreen} />
-            <Route
-              path='/search/:keyword/page/:pageNumber'
-              component={HomeScreen}
-            />
-            <Route path='/' component={HomeScreen} exact />
-            {/* <Route component={NotFoundScreen} /> */}
-          </Container>
-        </main>
-        <Footer />
-      </ThemeProvider>
+      <ErrorBoundary>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <main>
+            <Container maxWidth='lg'>
+              <Route path='/cart/:id?' component={CartScreen} />
+              <Route path='/checkout' component={CheckoutScreen} />
+              <Route path='/login' component={LoginScreen} />
+              <Route path='/orders/:id' component={OrderScreen} />
+              <Route path='/product/:id' component={ProductScreen} />
+              <Route path='/profile' component={ProfileScreen} />
+              <Route path='/register' component={RegisterScreen} />
+              <Route path='/admin/userlist' component={UserListScreen} />
+              <Route path='/admin/productlist' component={ProductListScreen} />
+              <Route path='/admin/orderlist' component={OrderListScreen} />
+              <Route path='/search/:keyword' component={HomeScreen} exact />
+              <Route path='/page/:pageNumber' component={HomeScreen} />
+              <Route
+                path='/search/:keyword/page/:pageNumber'
+                component={HomeScreen}
+              />
+              <Route path='/' component={HomeScreen} exact />
+              {/* <Route component={NotFoundScreen} /> */}
+            </Container>
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </ErrorBoundary>
     </Router>
   );
 };
