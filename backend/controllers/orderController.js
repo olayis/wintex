@@ -46,7 +46,10 @@ const getOrderById = asyncHandler(async (req, res) => {
   );
 
   if (order) {
-    if (!req.user.isAdmin && req.user._id !== order.user._id) {
+    if (
+      req.user.isAdmin === false &&
+      String(req.user._id) !== String(order.user._id)
+    ) {
       res.status(401);
       throw new Error("You don't have the access to view this order");
     } else {
