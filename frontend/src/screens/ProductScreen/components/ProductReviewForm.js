@@ -42,7 +42,7 @@ const ProductReviewForm = ({ paramsId }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (rating && comment) {
+    if (rating) {
       dispatch(
         createProductReview(paramsId, {
           rating,
@@ -50,7 +50,7 @@ const ProductReviewForm = ({ paramsId }) => {
         })
       );
     } else {
-      setMessage({ text: 'Please, fill all fields', severity: 'error' });
+      setMessage({ text: 'Please, select a valid rating', severity: 'error' });
     }
   };
 
