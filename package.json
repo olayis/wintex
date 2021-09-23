@@ -2,6 +2,9 @@
   "name": "wintex",
   "version": "1.0.0",
   "description": "MERN eCommerce app",
+  "engines": {
+    "node": "14.17.x"
+  },
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -31,9 +34,5 @@
   "devDependencies": {
     "concurrently": "^6.2.0",
     "nodemon": "^2.0.12"
-  },
-  "engines": {
-    "node": ">=14.17.0",
-    "npm": ">=6.14.13"
   }
 }
