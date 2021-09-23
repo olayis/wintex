@@ -43,7 +43,7 @@ const NotFoundScreen = ({ history }) => {
           color='textSecondary'
           className={classes.title}
         >
-          Page Not Found
+          Page Not Found (404)
         </Typography>
         <img
           src={offRoadImage}
@@ -57,7 +57,7 @@ const NotFoundScreen = ({ history }) => {
           color='textSecondary'
           className={classes.title}
         >
-          Ooops! The page you are looking for does not exist
+          Oops! The page you are looking for does not exist
         </Typography>
         <Link component={RouterLink} to='/' className={classes.link}>
           Let's go back home.
