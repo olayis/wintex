@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { Link as RouterLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import numeral from 'numeral';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -87,12 +87,11 @@ const UserOrders = ({ classes, orders, loadingOrders, errorOrders }) => {
             >
               <TableHead>
                 <TableRow>
-                  <StyledTableCell>ID</StyledTableCell>
-                  <StyledTableCell align='right'>Date</StyledTableCell>
+                  <StyledTableCell align='center'>ID</StyledTableCell>
+                  <StyledTableCell align='left'>Date</StyledTableCell>
                   <StyledTableCell align='right'>Total</StyledTableCell>
-                  <StyledTableCell align='right'>Paid</StyledTableCell>
-                  <StyledTableCell align='right'>Delivered</StyledTableCell>
-                  <StyledTableCell align='right'></StyledTableCell>
+                  <StyledTableCell align='center'>Paid</StyledTableCell>
+                  <StyledTableCell align='center'>Delivered</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -100,39 +99,37 @@ const UserOrders = ({ classes, orders, loadingOrders, errorOrders }) => {
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((order) => (
                     <StyledTableRow key={order._id}>
-                      <StyledTableCell component='th' scope='row'>
-                        {order._id}
+                      <StyledTableCell
+                        component='th'
+                        scope='row'
+                        align='center'
+                      >
+                        <Link
+                          component={RouterLink}
+                          to={`/orders/${order._id}`}
+                        >
+                          {order._id}
+                        </Link>
                       </StyledTableCell>
-                      <StyledTableCell align='right'>
+                      <StyledTableCell align='left'>
                         {order.createdAt.substring(0, 10)}
                       </StyledTableCell>
                       <StyledTableCell align='right'>
-                        {order.totalPrice}
+                        {numeral(order.totalPrice).format('$0,0.00')}
                       </StyledTableCell>
-                      <StyledTableCell align='right'>
+                      <StyledTableCell align='center'>
                         {order.isPaid ? (
                           order.paidAt.substring(0, 10)
                         ) : (
                           <CloseIcon color='action' />
                         )}
                       </StyledTableCell>
-                      <StyledTableCell align='right'>
+                      <StyledTableCell align='center'>
                         {order.isDelivered ? (
                           order.deliveredAt.substring(0, 10)
                         ) : (
                           <CloseIcon color='action' />
                         )}
-                      </StyledTableCell>
-                      <StyledTableCell align='right'>
-                        <Link
-                          component={RouterLink}
-                          to={`/orders/${order._id}`}
-                          underline='none'
-                        >
-                          <Button color='primary' size='small' disableElevation>
-                            Details
-                          </Button>
-                        </Link>
                       </StyledTableCell>
                     </StyledTableRow>
                   ))}
