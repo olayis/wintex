@@ -35,6 +35,7 @@ class ErrorBoundary extends React.Component {
               align='center'
               color='textSecondary'
               component='h1'
+              style={{ marginBottom: '12px' }}
             >
               Oops! An error occured
             </Typography>

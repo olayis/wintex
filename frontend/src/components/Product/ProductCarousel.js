@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   navButton: {
     visibility: 'hidden',
     transition: 'visibility linear 2s',
-    marginTop: '-350px',
+    marginTop: '-400px',
     borderRadius: '50%',
   },
   carousel: {

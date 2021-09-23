@@ -58,9 +58,14 @@ const HomeScreen = ({ match, history }) => {
           </Grid>
         </>
       ) : error ? (
-        <Message severity='error' collapsible>
-          {error}
-        </Message>
+        <>
+          <Typography variant='h2' align='center'>
+            Latest Products
+          </Typography>
+          <Message severity='error' collapsible>
+            {error}
+          </Message>
+        </>
       ) : (
         <>
           {keyword ? (
