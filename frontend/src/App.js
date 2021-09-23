@@ -19,8 +19,9 @@ import UserListScreen from './screens/UserListScreen/UserListScreen';
 import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import OrderListScreen from './screens/OrderListScreen/OrderListScreen';
 import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
-import ErrorBoundary from './components/ErrorBoundary';
-import Message from './components/Message/Message';
+import Disclaimer from './components/Misc/Disclaimer';
+import ErrorBoundary from './components/Misc/ErrorBoundary';
+import ScrollToTop from './components/Misc/ScrollToTop';
 
 const App = () => {
   const numeralConfig = nairaLocale();
@@ -31,16 +32,10 @@ const App = () => {
       <ErrorBoundary>
         <ThemeProvider theme={theme}>
           <Header />
-          <div style={{ margin: '65px 0 12px 0' }}>
-            <Message collapsible>
-              <strong>
-                Disclaimer: This is not an actual online store, the products are
-                thereby not purchasable.
-              </strong>
-            </Message>
-          </div>
+          <Disclaimer />
           <main>
             <Container maxWidth='lg'>
+              <ScrollToTop />
               <Switch>
                 <Route path='/cart/:id?' component={CartScreen} />
                 <Route path='/checkout' component={CheckoutScreen} />

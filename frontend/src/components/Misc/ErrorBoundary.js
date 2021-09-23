@@ -1,7 +1,7 @@
 import React from 'react';
-import Illustration from './Illustration/Illustration';
-import engineerImage from '../static/images/qa_engineer.svg';
 import Typography from '@material-ui/core/Typography';
+import Illustration from '../Illustration/Illustration';
+import engineerImage from '../../static/images/qa_engineer.svg';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
