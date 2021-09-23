@@ -56,14 +56,14 @@ const useStyles = makeStyles((theme) => ({
     transition: 'visibility linear 2s',
     marginTop: '-400px',
     borderRadius: '50%',
-    [theme.breakpoints.down('sm')]: {
-      visibility: 'hidden',
-    },
   },
   carousel: {
     marginTop: '-50px',
     '&:hover $navButton': {
       visibility: 'visible',
+      [theme.breakpoints.down('sm')]: {
+        visibility: 'hidden',
+      },
     },
   },
   productName: {
