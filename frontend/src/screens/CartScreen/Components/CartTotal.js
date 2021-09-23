@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import numeral from 'numeral';
 
-const CartSubtotal = ({
+const CartTotal = ({
   classes,
   cartItems,
   cartSubtotalCount,
@@ -64,4 +64,4 @@ const CartSubtotal = ({
   );
 };
 
-export default CartSubtotal;
+export default CartTotal;

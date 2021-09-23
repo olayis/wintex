@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import cartSubtotalHelper from '../../helpers/cartSubtotalHelper';
 import CartItems from './components/CartItems';
-import CartSubtotal from './components/CartSubtotal';
+import CartTotal from './components/CartTotal';
 import Illustration from '../../components/Illustration/Illustration';
 import emptyCartImage from '../../static/images/empty_cart.svg';
 import Meta from '../../components/Meta/Meta';
@@ -104,7 +104,7 @@ const CartScreen = ({ match, location, history }) => {
           </Grid>
 
           <Grid item md={3} sm={12} xs={12}>
-            <CartSubtotal
+            <CartTotal
               classes={classes}
               cartItems={cartItems}
               cartSubtotalCount={cartSubtotalCount}
