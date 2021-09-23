@@ -20,7 +20,6 @@ import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import OrderListScreen from './screens/OrderListScreen/OrderListScreen';
 import ErrorBoundary from './components/ErrorBoundary';
 import Message from './components/Message/Message';
-// import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
 
 const App = () => {
   const numeralConfig = nairaLocale();
@@ -58,7 +57,6 @@ const App = () => {
                 component={HomeScreen}
               />
               <Route path='/' component={HomeScreen} exact />
-              {/* <Route component={NotFoundScreen} /> */}
             </Container>
           </main>
           <Footer />
