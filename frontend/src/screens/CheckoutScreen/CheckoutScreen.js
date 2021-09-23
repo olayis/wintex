@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import {
   saveShippingAddress,
   savePaymentMethod,
+  resetCartItems,
 } from '../../actions/cartActions';
 import { createOrder } from '../../actions/orderActions';
 import CheckoutStepper from './components/CheckoutStepper/CheckoutStepper';
@@ -85,8 +86,9 @@ const CheckoutScreen = ({ history }) => {
   useEffect(() => {
     if (success) {
       history.push(`/orders/${order._id}`);
+      dispatch(resetCartItems());
     }
-  }, [history, success, order]);
+  }, [history, success, order, dispatch]);
 
   // handlers
   const onShippingSubmit = ({ address, city, postalCode, country }) => {
