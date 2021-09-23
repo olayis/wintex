@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Message = ({ severity, children, collapsible, disapper, timeout }) => {
+const Message = ({ severity, children, collapsible, disappear, timeout }) => {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
 
-  if (disapper) {
+  if (disappear) {
     setTimeout(() => {
       setOpen(false);
     }, timeout);
@@ -57,7 +57,7 @@ Message.defaultProps = {
   severity: 'info',
   text: '',
   collapsible: false,
-  disapper: false,
+  disappear: false,
   timeout: 5000,
 };
 
