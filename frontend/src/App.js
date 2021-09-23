@@ -19,6 +19,7 @@ import UserListScreen from './screens/UserListScreen/UserListScreen';
 import ProductListScreen from './screens/ProductListScreen/ProductListScreen';
 import OrderListScreen from './screens/OrderListScreen/OrderListScreen';
 import ErrorBoundary from './components/ErrorBoundary';
+import Message from './components/Message/Message';
 // import NotFoundScreen from './screens/NotFoundScreen/NotFoundScreen';
 
 const App = () => {
@@ -30,6 +31,11 @@ const App = () => {
       <ErrorBoundary>
         <ThemeProvider theme={theme}>
           <Header />
+          <Message collapsible>
+            Disclaimer: The products you see in this application are not real
+            and not purchasable, feel free to explore and use the app. Thank
+            you.
+          </Message>
           <main>
             <Container maxWidth='lg'>
               <Route path='/cart/:id?' component={CartScreen} />
