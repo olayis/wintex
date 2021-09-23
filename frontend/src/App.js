@@ -31,11 +31,14 @@ const App = () => {
       <ErrorBoundary>
         <ThemeProvider theme={theme}>
           <Header />
-          <Message collapsible>
-            Disclaimer: The products you see in this application are not real
-            and not purchasable, feel free to explore and use the app. Thank
-            you.
-          </Message>
+          <div style={{ margin: '65px 0 12px 0' }}>
+            <Message collapsible>
+              <strong>
+                Disclaimer: Wintex is not an actual online store, the products
+                are thereby not purchasable.
+              </strong>
+            </Message>
+          </div>
           <main>
             <Container maxWidth='lg'>
               <Route path='/cart/:id?' component={CartScreen} />
