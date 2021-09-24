@@ -228,8 +228,8 @@ const NewProductForm = ({
             message={imageMessage}
             uploadFileHandler={uploadFileHandler}
             uploading={imageUploading}
-            imageSrc=''
-            imageAlt=''
+            newImageSrc={image}
+            imageAlt='Product'
           />
         </div>
 
