@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from '@mui/x-data-grid';
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
@@ -19,6 +19,7 @@ import {
 } from '../../constants/productConstants';
 import Meta from '../../components/Meta/Meta';
 import GoBack from '../../components/Navigation/GoBack';
+import ProductDataStates from './components/ProductDataStates';
 
 const defaultTheme = createTheme();
 
@@ -51,9 +52,11 @@ const ProductListScreen = ({ history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [page, setPage] = useState(1);
+
   // products
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products = [] } = productList;
+  const { loading, error, products = [], count = 0 } = productList;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -77,12 +80,12 @@ const ProductListScreen = ({ history }) => {
       history.push('/login');
     }
 
-    dispatch(listProducts());
+    dispatch(listProducts('', page));
 
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
     }
-  }, [dispatch, history, userInfo, successDelete, successUpdate]);
+  }, [dispatch, history, userInfo, successDelete, successUpdate, page]);
 
   // data-grid
   const handleRowEditStart = (params, event) => {
@@ -116,56 +119,15 @@ const ProductListScreen = ({ history }) => {
           </Message>
         ) : products.length !== 0 ? (
           <>
-            <div style={{ marginBottom: '8px' }}>
-              <div style={{ marginBottom: '5px' }}>
-                {loadingDelete && (
-                  <>
-                    <CircularLoader />
-                    <p style={{ textAlign: 'center' }}>Deleting...</p>
-                  </>
-                )}
-                {successDelete && (
-                  <Message severity='success' collapsible>
-                    Product has been deleted successfully
-                  </Message>
-                )}
-              </div>
-
-              <div style={{ marginBottom: '5px' }}>
-                {loadingCreate && (
-                  <>
-                    <CircularLoader />
-                    <p style={{ textAlign: 'center' }}>
-                      Creating a new product...
-                    </p>
-                  </>
-                )}
-                {errorCreate && (
-                  <Message severity='error' collapsible>
-                    {errorCreate}
-                  </Message>
-                )}
-              </div>
-
-              <div style={{ marginBottom: '5px' }}>
-                {loadingUpdate && (
-                  <>
-                    <CircularLoader />
-                    <p style={{ textAlign: 'center' }}>Updating...</p>
-                  </>
-                )}
-                {successUpdate && (
-                  <Message severity='success' collapsible>
-                    Order has been updated successfully
-                  </Message>
-                )}
-                {errorUpdate && (
-                  <Message severity='error' collapsible>
-                    {errorUpdate}
-                  </Message>
-                )}
-              </div>
-            </div>
+            <ProductDataStates
+              loadingDelete={loadingDelete}
+              successDelete={successDelete}
+              loadingCreate={loadingCreate}
+              errorCreate={errorCreate}
+              loadingUpdate={loadingUpdate}
+              successUpdate={successUpdate}
+              errorUpdate={errorUpdate}
+            />
 
             <div style={{ height: 550, width: '100%' }}>
               <ThemeProvider theme={overrideTheme}>
@@ -173,12 +135,17 @@ const ProductListScreen = ({ history }) => {
                   className={classes.root}
                   rows={productRows(products)}
                   columns={productColumns}
-                  pageSize={20}
-                  rowsPerPageOptions={[20]}
+                  pageSize={32}
+                  rowsPerPageOptions={[32]}
                   editMode='row'
                   onRowEditStart={handleRowEditStart}
                   onRowEditStop={handleRowEditStop}
                   components={{ Toolbar: ProductToolbar }}
+                  pagination
+                  rowCount={count}
+                  paginationMode='server'
+                  onPageChange={(newPage) => setPage(newPage + 1)}
+                  loading={loading}
                 />
               </ThemeProvider>
             </div>
