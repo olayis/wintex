@@ -42,6 +42,7 @@ const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({
     $or: [{ ...keywordName }, { ...keywordBrand }, { ...keywordCategory }],
   })
+    .sort('-createdAt')
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
