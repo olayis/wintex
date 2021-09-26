@@ -138,6 +138,13 @@ const OrderScreen = ({ match, history }) => {
         setSdkReady(true);
       }
     }
+
+    // Ensure the order being displayed correlates with the orderId from url
+    if (order) {
+      if (order._id !== orderId) {
+        dispatch(getOrderDetails(orderId));
+      }
+    }
   }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo]);
 
   const successPaymentHandler = (paymentResult) => {
