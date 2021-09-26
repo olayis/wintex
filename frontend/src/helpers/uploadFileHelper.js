@@ -14,7 +14,11 @@ const uploadFileHelper = async (e) => {
 
     const { data } = await axios.post('/api/upload', formData, config);
 
-    return { data, text: `Image ${data} uploaded!`, severity: 'success' };
+    return {
+      data,
+      text: 'Image uploaded successfully',
+      severity: 'success',
+    };
   } catch (error) {
     console.error(error);
     return { data: '', text: error, severity: 'error' };
