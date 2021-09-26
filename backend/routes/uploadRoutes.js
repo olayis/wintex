@@ -6,11 +6,6 @@ import fs from 'fs';
 
 const router = express.Router();
 
-// // Temporarily create uploads folder to be used before uploading to cloudinary if not already present
-// if (!fs.existsSync('./uploads')) {
-//   fs.mkdirSync('./uploads');
-// }
-
 // Multer setup
 const storage = multer.diskStorage({
   destination(req, file, cb) {
