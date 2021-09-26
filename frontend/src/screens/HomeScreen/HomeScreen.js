@@ -31,7 +31,13 @@ const HomeScreen = ({ match, history }) => {
   return (
     <>
       <Meta />
-      {keyword ? <GoBack history={history} /> : <ProductCarousel />}
+      {keyword ? (
+        <GoBack history={history} />
+      ) : pageNumber !== 1 ? (
+        ''
+      ) : (
+        <ProductCarousel />
+      )}
       {loading ? (
         <>
           {keyword ? (
