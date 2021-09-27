@@ -14,6 +14,7 @@ import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    minHeight: '80vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
