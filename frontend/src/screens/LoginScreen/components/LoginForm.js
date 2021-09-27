@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { Link as RouterLink } from 'react-router-dom';
+// import { Link as RouterLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
@@ -90,13 +90,13 @@ const LoginForm = ({ onSubmit, classes, loading }) => {
           rules={{ required: 'Password required' }}
         />
       </div>
-      <div className={classes.forgotPassword}>
+      {/* <div className={classes.forgotPassword}>
         <Typography variant='subtitle2' align='right'>
           <Link component={RouterLink} to='/login'>
             Forgot your password?
           </Link>
         </Typography>
-      </div>
+      </div> */}
       <Button
         type='submit'
         variant='contained'

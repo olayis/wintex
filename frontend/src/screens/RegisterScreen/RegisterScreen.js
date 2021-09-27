@@ -9,7 +9,7 @@ import { register } from '../../actions/userActions';
 import Message from '../../components/Message/Message';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import RegisterForm from './components/RegisterForm';
-import SignUpMethods from './components/SignUpMethods';
+// import SignUpMethods from './components/SignUpMethods';
 import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
@@ -107,7 +107,7 @@ const RegisterScreen = ({ history, location }) => {
           </Link>
         </Typography>
 
-        <SignUpMethods loading={loading} />
+        {/* <SignUpMethods loading={loading} /> */}
       </Paper>
     </div>
   );

@@ -9,11 +9,12 @@ import { login } from '../../actions/userActions';
 import Message from '../../components/Message/Message';
 import CircularLoader from '../../components/Loaders/CircularLoader';
 import LoginForm from './components/LoginForm';
-import SignInMethods from './components/SignInMethods';
+// import SignInMethods from './components/SignInMethods';
 import Meta from '../../components/Meta/Meta';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    height: '80vh',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -98,7 +99,7 @@ const LoginScreen = ({ history, location }) => {
           </Link>
         </Typography>
 
-        <SignInMethods loading={loading} />
+        {/* <SignInMethods loading={loading} /> */}
       </Paper>
     </div>
   );
