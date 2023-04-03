@@ -23,8 +23,16 @@
 
 ## Table of Contents
 
-- [About the Project](#about-the-project)
+- [Table of Contents](#table-of-contents)
+- [About The Project](#about-the-project)
   - [Built With](#built-with)
+- [Available Scripts](#available-scripts)
+  - [`npm run data:import`](#npm-run-dataimport)
+  - [`npm run data:destroy`](#npm-run-datadestroy)
+  - [`npm start`](#npm-start)
+  - [`npm run client`](#npm-run-client)
+  - [`npm run dev`](#npm-run-dev)
+  - [`npm run server-test`](#npm-run-server-test)
 - [License](#license)
 - [Contact](#contact)
 
@@ -44,6 +52,40 @@
 - MongoDB
 - Express
 - Redux
+
+<!-- AVAILABLE SCRIPTS -->
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm run data:import`
+
+Seeds the database with data (Setup)
+
+### `npm run data:destroy`
+
+Deletes the seed data for the database (Teardown)
+
+### `npm start`
+
+Runs the backend app in the development mode on port 5000.\
+
+### `npm run client`
+
+Runs the frontend app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `npm run dev`
+
+Runs the server and client/frontend in the dev environment
+
+### `npm run server-test`
+
+Runs test for the backend
 
 <!-- LICENSE -->
 
